@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Overwhelm to Influence — The Dignitas Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@300;400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =================================================================
+   BRAND VARIABLES — Edit here to change colors & fonts globally
+================================================================= */
+:root {
+  --green:  #3BB54A;
+  --lime:   #CBDB2A;
+  --black:  #000000;
+  --white:  #FFFFFF;
+  --dark:   #111111;
+  --light:  #F5F5F5;
+
+  /* FONTS
+     --font-main      = Tomorrow (main headlines)
+     --font-secondary = Exo 2 (sub-headlines / Automate OT substitute)
+     --font-body      = Rajdhani (paragraphs / Acumin Pro substitute)
+  */
+  --font-main:      'Tomorrow', sans-serif;
+  --font-secondary: 'Exo 2', sans-serif;
+  --font-body:      'Rajdhani', sans-serif;
+}
+
+/* =================================================================
+   RESET
+================================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;}
+button{cursor:pointer;font-family:inherit;border:none;background:none;}
+ul{list-style:none;}
+input[type=checkbox]{accent-color:var(--green);width:15px;height:15px;cursor:pointer;}
+
+/* =================================================================
+   SHELL
+================================================================= */
+#pb{width:100vw;height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+
+/* =================================================================
+   TOP BAR
+================================================================= */
+#topbar{
+  position:absolute;top:0;left:0;right:0;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;z-index:100;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.6) 0%,transparent 100%);
+}
+#menu-btn{display:flex;flex-direction:column;gap:5px;padding:7px;border-radius:4px;transition:background .2s;}
+#menu-btn:hover{background:rgba(255,255,255,0.08);}
+#menu-btn span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;}
+
+/* LOGO SIZE — Top bar: change height to resize */
+#topbar-logo img{height:30px;width:auto;display:block;object-fit:contain;}
+
+/* =================================================================
+   BOTTOM BAR
+================================================================= */
+#bottombar{
+  height:52px;
+  background:rgba(0,0,0,0.95);
+  border-top:1px solid #1a1a1a;
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+  gap:14px;
+  flex-shrink:0;
+  z-index:100;
+}
+
+/* Hide bottom bar on cover page */
+#bottombar.hide-on-cover{
+  display:none;
+}
+#page-jump{
+  width:42px;
+  background:#111;
+  border:1px solid #333;
+  color:var(--green);
+  font-family:var(--font-secondary);
+  font-size:10px;
+  font-weight:700;
+  text-align:center;
+  padding:3px 4px;
+  border-radius:3px;
+  outline:none;
+}
+
+#page-jump:focus{
+  border-color:var(--green);
+  box-shadow:0 0 5px rgba(59,181,74,0.5);
+}
+
+#total-pages{
+  color:#666;
+}
+.nav-btn{
+  font-family:var(--font-secondary);font-size:12px;font-weight:700;
+  letter-spacing:2px;color:#555;padding:5px 14px;
+  border:1px solid #2a2a2a;border-radius:3px;transition:all .2s;text-transform:uppercase;
+}
+.nav-btn:hover{color:var(--green);border-color:var(--green);}
+#prog-wrap{flex:1;display:flex;flex-direction:column;gap:5px;}
+#prog-track{height:5px;background:#333;border-radius:3px;}
+#prog-fill{height:100%;background:var(--green);border-radius:3px;transition:width .4s ease;width:3%;box-shadow:0 0 6px rgba(59,181,74,0.6);}
+#prog-meta{display:flex;justify-content:space-between;}
+#prog-label{font-family:var(--font-secondary);font-size:10px;color:#444;letter-spacing:1px;}
+#prog-pct{font-family:var(--font-secondary);font-size:10px;color:var(--green);letter-spacing:1px;}
+
+/* LOGO SIZE — Bottom bar secondary logo: change height to resize */
+#bot-logo img{height:24px;width:auto;display:block;object-fit:contain;}
+
+/* =================================================================
+   SIDEBAR
+================================================================= */
+#sidebar{
+  position:fixed;top:0;left:0;width:288px;height:100%;
+  background:#080808;border-right:1px solid #1e1e1e;
+  z-index:200;display:flex;flex-direction:column;
+  transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+#sidebar.open{transform:translateX(0);}
+#sb-head{padding:20px;border-bottom:1px solid #1e1e1e;display:flex;align-items:center;justify-content:space-between;}
+
+/* LOGO SIZE — Sidebar logo: change height to resize */
+#sb-logo img{height:36px;width:auto;display:block;object-fit:contain;}
+
+#sb-close{color:#444;font-size:20px;transition:color .2s;}
+#sb-close:hover{color:#fff;}
+#toc{flex:1;overflow-y:auto;padding:10px 0;}
+#toc::-webkit-scrollbar{width:3px;}
+#toc::-webkit-scrollbar-thumb{background:#2a2a2a;}
+.toc-grp{margin-bottom:2px;}
+.toc-grp-label{padding:10px 20px 5px;font-family:var(--font-secondary);font-size:9px;font-weight:700;letter-spacing:3px;color:var(--green);text-transform:uppercase;}
+.toc-link{display:flex;align-items:center;gap:10px;padding:8px 20px;font-family:var(--font-body);font-size:13px;color:#666;cursor:pointer;transition:all .18s;border-left:3px solid transparent;width:100%;text-align:left;}
+.toc-link:hover{color:#ccc;background:rgba(59,181,74,0.06);border-left-color:rgba(59,181,74,0.3);}
+.toc-link.active{color:#fff;background:rgba(59,181,74,0.1);border-left-color:var(--green);}
+.toc-num{font-family:var(--font-secondary);font-size:10px;color:var(--green);min-width:20px;font-weight:700;}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:199;display:none;backdrop-filter:blur(2px);}
+#overlay.show{display:block;}
+
+/* =================================================================
+   SLIDES
+================================================================= */
+#slide-area{flex:1;position:relative;overflow:hidden;}
+.slide{position:absolute;inset:0;width:100%;height:100%;display:none;}
+.slide.active{display:flex;animation:sIn .3s ease;}
+@keyframes sIn{from{opacity:0;transform:translateX(14px);}to{opacity:1;transform:translateX(0);}}
+
+/* =================================================================
+   SECONDARY LOGO WATERMARK
+   Appears on every slide as subtle background element.
+   EDIT OPACITY: change 0.04 below (0.02 = barely visible, 0.08 = noticeable)
+   EDIT SIZE: change width:36% below
+   EDIT POSITION: change bottom/right values
+================================================================= */
+.bg-logo{
+  position:absolute;bottom:-4%;right:65%;
+  width:36%;          /* watermark size */
+  opacity:0.04;       /* watermark visibility */
+  pointer-events:none;user-select:none;z-index:0;object-fit:contain;
+}
+/* Slightly more visible on dark slides */
+.slide-dark .bg-logo{opacity:0.055;}
+/* Inverted (white) on green slides */
+.slide-green .bg-logo{opacity:0.1;filter:brightness(10);}
+
+/* =================================================================
+   SPLIT LAYOUT (left green/dark panel + right white panel)
+================================================================= */
+.sl-split{flex-direction:row;background:#fff;}
+.lp{width:36%;min-width:185px;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:68px 28px 36px;position:relative;overflow:hidden;z-index:1;}
+.lp.green{background:var(--green);}
+.lp.dark{background:#111;}
+.lp.black{background:#000;}
+.lp-lbl{font-family:var(--font-secondary);font-size:20px;font-weight:400;letter-spacing:3px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:8px;}
+.lp-title{font-family:var(--font-main);font-weight:700;font-size:32px;line-height:1.0;color:#fff;text-transform:uppercase;}
+.lp-bar{width:42px;height:3px;background:rgba(255,255,255,0.22);border-radius:2px;margin-top:14px;}
+
+.rp{flex:1;background:#fff;padding:64px 42px 28px;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;}
+.rp::-webkit-scrollbar{width:3px;}
+.rp::-webkit-scrollbar-thumb{background:#e0e0e0;}
+
+/* Right panel typography */
+.rp-eye{font-family:var(--font-secondary);font-size:20px;font-weight:700;letter-spacing:3px;color:var(--green);text-transform:uppercase;margin-bottom:6px;}
+.rp-h2{font-family:var(--font-main);font-weight:700;font-size:24px;color:#111;margin-bottom:12px;line-height:1.1;}
+.rp-h3{font-family:var(--font-secondary);font-weight:700;font-size:18px;color:#111;margin:14px 0 7px;text-transform:uppercase;letter-spacing:1.5px;}
+.rp-p{font-family:var(--font-body);font-size:20px;color:#444;line-height:1.7;margin-bottom:8px;}
+.rp-li{font-family:var(--font-body);font-size:18px;color:#444;line-height:1.6;margin-bottom:5px;padding-left:16px;position:relative;}
+.rp-li::before{content:'—';position:absolute;left:0;color:var(--green);font-weight:700;}
+.rp-quote{border-left:3px solid var(--green);padding:10px 15px;background:#f7f7f7;font-family:var(--font-body);font-size:18px;font-style:italic;color:#333;margin:10px 0;border-radius:0 4px 4px 0;}
+.refl-lbl{font-family:var(--font-body);font-size:18px;color:#bbb;margin-bottom:4px;display:block;}
+.refl-line{display:block;width:100%;height:1px;background:#e2e2e2;margin-bottom:13px;}
+/* WRITABLE RESPONSE LINE
+   Safe version: fixed height, 2 visible lines only.
+   This prevents the text box from pushing into the bottom bar.
+*/
+.write-line{
+  width:100%;
+  height:44px;
+  min-height:44px;
+  max-height:44px;
+  border:none;
+  border-bottom:1px solid #d8d8d8;
+  background:transparent;
+  resize:none;
+  overflow-y:auto;
+
+  font-family:var(--font-body);
+  font-size:18px;
+  color:#222;
+  line-height:1.35;
+  padding:4px 2px;
+  outline:none;
+  margin-bottom:10px;
+
+  position:relative;
+  z-index:2;
+}
+
+.write-line:focus{
+  border-bottom-color:var(--green);
+  background:rgba(59,181,74,0.03);
+}
+
+/* Keep large fields controlled too */
+.write-line.large{
+  height:54px;
+  min-height:54px;
+  max-height:54px;
+}
+.green-box{background:var(--green);color:#fff;padding:11px 15px;border-radius:4px;font-family:var(--font-body);font-size:14px;font-weight:600;margin:10px 0;}
+.cpair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.cp{padding:12px 14px;border-radius:4px;}
+.cp.g{background:#f4f4f4;}
+.cp.gr{background:var(--green);}
+.cp strong{display:block;font-family:var(--font-secondary);font-size:18px;margin-bottom:2px;}
+.cp.g strong{color:#111;}.cp.gr strong{color:#fff;}
+.cp p{font-family:var(--font-body);font-size:18px;}
+.cp.g p{color:#666;}.cp.gr p{color:rgba(255,255,255,0.82);}
+
+/* =================================================================
+   PART TITLE SLIDES
+================================================================= */
+.sl-part{flex-direction:row;background:#000;}
+.part-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 60px;position:relative;overflow:hidden;z-index:1;}
+.part-lbl{font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:5px;color:var(--green);text-transform:uppercase;margin-bottom:16px;}
+.part-title{font-family:var(--font-main);font-weight:900;font-size:66px;line-height:.93;color:#fff;text-transform:uppercase;}
+.part-desc{font-family:var(--font-body);font-size:18px;color:#555;margin-top:16px;max-width:340px;line-height:1.65;}
+.part-num{font-family:var(--font-main);font-size:150px;font-weight:900;color:#0d0d0d;line-height:1;position:absolute;bottom:8px;right:28px;pointer-events:none;user-select:none;z-index:0;}
+.part-pat{
+  width:220px;
+  flex-shrink:0;
+  background:#000;
+  background-image:url('images/Pattern.png');
+  background-repeat:repeat-y;
+  background-position:top center;
+  background-size:220px auto;
+  border-left:1px solid #181818;
+  overflow:hidden;
+  z-index:1;
+}
+.part-pat .pgrid,
+.part-pattern-img{
+  display:none;
+}
+.parc{width:30px;height:30px;border-radius:50%;border:4px solid var(--green);border-right-color:transparent;border-bottom-color:transparent;}
+
+/* =================================================================
+   COVER SLIDE
+================================================================= */
+.sl-cover{position:relative;align-items:stretch;}
+.cover-bg{position:absolute;inset:0;background:linear-gradient(135deg,#001800 0%,#003300 35%,#001200 65%,#000 100%);z-index:0;}
+.cover-left{width:42%;position:relative;z-index:2;overflow:hidden;}
+/* COVER BACKGROUND PHOTO */
+.cover-photo{
+  position:absolute;
+  inset:0;
+  background-image:url('images/Cover.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:1;
+}
+
+.cover-photo-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(51,190,73,0.85) 0%,
+    rgba(51,190,73,0.58) 50%,
+    rgba(51,190,73,0.15) 100%
+  );
+  z-index:2;
+}
+.cover-right{flex:1;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:68px 52px 44px;background:rgba(255,255,255,0.97);}
+.cover-dring{position:absolute;top:50%;right:-6%;transform:translateY(-50%);width:52%;opacity:0.07;pointer-events:none;z-index:0;object-fit:contain;}
+
+/* LOGO SIZE — Cover logo: change height to resize */
+#cover-logo{height:44px;width:auto;object-fit:contain;display:block;margin-bottom:28px;position:relative;z-index:1;align-self:flex-start;}
+.cover-title{font-family:var(--font-main);font-weight:700;font-size:40px;line-height:1.05;color:#111;position:relative;z-index:1;margin-bottom:6px;}
+.cover-accent{width:150px;height:4px;background:linear-gradient(to right,var(--green),transparent);margin:16px 0 22px;position:relative;z-index:1;}
+.cover-sub{font-family:var(--font-body);font-size:20px;color:#777;line-height:1.7;max-width:370px;margin-bottom:32px;position:relative;z-index:1;}
+.start-btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:13px 30px;border-radius:3px;font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:3px;text-transform:uppercase;transition:all .22s;align-self:flex-start;position:relative;z-index:1;}
+.start-btn:hover{background:#2ea33d;transform:translateY(-2px);}
+
+/* =================================================================
+   FULL-BLEED DARK SLIDES
+================================================================= */
+.sl-full{position:relative;align-items:center;justify-content:center;background:#050505;}
+.full-content{position:relative;z-index:2;text-align:center;padding:60px 90px;max-width:800px;}
+.full-tag{font-family:var(--font-secondary);font-size:18px;letter-spacing:5px;color:var(--green);text-transform:uppercase;margin-bottom:16px;}
+.full-title{font-family:var(--font-main);font-weight:900;font-size:48px;color:#fff;line-height:1.0;text-transform:uppercase;margin-bottom:18px;}
+.full-body{font-family:var(--font-body);font-size:18px;color:rgba(255,255,255,0.62);line-height:1.8;}
+.icon-row{display:flex;justify-content:center;gap:26px;margin-top:30px;}
+.icon-pill{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.icon-circle{width:58px;height:58px;border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.icon-pill span{font-family:var(--font-secondary);font-size:16px;letter-spacing:2px;color:rgba(255,255,255,0.45);text-transform:uppercase;}
+
+/* =================================================================
+   ICON LEGEND SLIDE
+================================================================= */
+.sl-icons{flex-direction:column;background:#fff;}
+.icons-head{padding:68px 44px 18px;border-bottom:1px solid #eee;flex-shrink:0;}
+.icons-head h2{font-family:var(--font-main);font-weight:700;font-size:28px;color:#111;text-transform:uppercase;}
+.icons-head p{font-family:var(--font-body);font-size:13px;color:#999;margin-top:4px;}
+.icons-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);}
+.ic{padding:28px 26px;border-right:1px solid #eee;display:flex;flex-direction:column;gap:12px;}
+.ic:last-child{border-right:none;}
+.ic-circle{width:60px;height:60px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.ic-name{font-family:var(--font-secondary);font-weight:900;font-size:18px;color:#111;text-transform:uppercase;letter-spacing:2px;}
+.ic-desc{font-family:var(--font-body);font-size:18px;color:#666;line-height:1.6;}
+.ic-bar{width:26px;height:3px;background:var(--green);border-radius:2px;margin-top:auto;}
+
+/* =================================================================
+   STRUCTURE SLIDE
+================================================================= */
+.sl-struct{flex-direction:column;background:#fff;}
+.struct-bar{background:var(--green);padding:14px 38px;padding-top:64px;display:flex;align-items:center;gap:13px;flex-shrink:0;}
+.struct-bar h2{font-family:var(--font-main);font-weight:700;font-size:19px;color:#fff;text-transform:uppercase;letter-spacing:2px;}
+.struct-cols{flex:1;display:grid;grid-template-columns:repeat(4,1fr);}
+.sc{padding:22px 20px;border-right:1px solid #eee;display:flex;flex-direction:column;gap:7px;}
+.sc:last-child{border-right:none;}
+.sc-num{font-family:var(--font-main);font-size:52px;font-weight:900;color:#f0f0f0;line-height:1;}
+.sc-name{font-family:var(--font-secondary);font-weight:900;font-size:18px;color:#111;text-transform:uppercase;letter-spacing:1px;}
+.sc-sub{font-family:var(--font-body);font-size:18px;color:#999;font-style:italic;line-height:1.5;}
+.sc-item{font-family:var(--font-body);font-size:18px;color:#555;padding:4px 0;border-top:1px solid #f0f0f0;line-height:1.4;}
+.struct-foot{background:#111;padding:13px 26px;display:flex;align-items:center;gap:13px;flex-shrink:0;}
+.sf-lbl{font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:3px;color:var(--lime);text-transform:uppercase;flex-shrink:0;}
+.sf-div{width:1px;height:17px;background:#333;}
+.sf-p{font-family:var(--font-body);font-size:18px;color:rgba(255,255,255,0.62);font-style:italic;}
+
+/* =================================================================
+   PLAYBOOK MOVE SLIDES
+================================================================= */
+.sl-move{flex-direction:column;background:#fff;}
+.move-top{background:#000;padding:13px 34px;padding-top:64px;display:flex;align-items:baseline;gap:16px;flex-shrink:0;}
+.move-scenario{font-family:var(--font-main);font-weight:700;font-size:19px;color:#fff;text-transform:uppercase;flex:1;letter-spacing:0.5px;}
+.move-icons-tag{font-family:var(--font-secondary);font-size:18px;font-weight:700;color:var(--green);letter-spacing:2px;}
+.move-body{flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr auto;}
+.mb{padding:22px 22px 18px;border-right:1px solid #efefef;display:flex;flex-direction:column;gap:9px;}
+.mb:last-of-type{border-right:none;}
+.mb-lbl{font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:3px;color:var(--green);text-transform:uppercase;display:flex;align-items:center;gap:7px;}
+.mb-lbl::after{content:'';flex:1;height:1px;background:#eee;}
+.mb-p{font-family:var(--font-body);font-size:18px;color:#333;line-height:1.65;font-style:italic;}
+.mb-li{font-family:var(--font-body);font-size:18px;color:#444;line-height:1.55;margin-bottom:5px;padding-left:14px;position:relative;}
+.mb-li::before{content:'↗';position:absolute;left:0;color:var(--green);font-size:10px;top:3px;}
+.move-int{grid-column:1/-1;background:#000;padding:14px 24px;display:flex;align-items:center;gap:16px;}
+.mi-lbl{font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:3px;color:var(--lime);text-transform:uppercase;flex-shrink:0;}
+.mi-div{width:1px;height:19px;background:#2a2a2a;}
+.mi-q{font-family:var(--font-body);font-size:18px;color:rgba(255,255,255,0.75);font-style:italic;}
+
+/* =================================================================
+   SIGNAL INVENTORY (green slide)
+================================================================= */
+.sl-inv{flex-direction:row;}
+.inv-l{width:36%;background:var(--green);flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:68px 26px 34px;position:relative;overflow:hidden;}
+.inv-l::before{content:'';position:absolute;top:-50px;right:-70px;width:210px;height:210px;border-radius:50%;border:28px solid rgba(0,0,0,0.08);pointer-events:none;}
+.inv-badge{background:var(--lime);color:#000;font-family:var(--font-secondary);font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:6px 12px;border-radius:2px;align-self:flex-start;margin-bottom:11px;}
+.inv-title{font-family:var(--font-main);font-weight:700;font-size:34px;color:#fff;text-transform:uppercase;line-height:.98;}
+.inv-sub{font-family:var(--font-body);font-size:18px;color:rgba(255,255,255,0.6);margin-top:7px;line-height:1.5;}
+.inv-bar{width:38px;height:3px;background:rgba(255,255,255,0.22);margin-top:13px;}
+.inv-r{
+  flex:1;
+  background:rgba(0,0,0,0.13);
+  padding:52px 38px 82px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
+}
+.inv-q{display:flex;flex-direction:column;gap:6px;}
+.inv-ql{font-family:var(--font-main);font-weight:600;font-size:18px;color:rgba(255,255,255,0.88);}
+.inv-line{height:1px;background:rgba(255,255,255,0.18);}
+
+/* =================================================================
+   COHERENCE QUESTIONS
+================================================================= */
+.sl-coh{flex-direction:row;background:#fff;}
+.coh-l{width:36%;background:var(--green);flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:68px 26px 34px;overflow:hidden;position:relative;}
+.coh-l::before{content:'';position:absolute;top:-50px;right:-70px;width:210px;height:210px;border-radius:50%;border:28px solid rgba(0,0,0,0.08);pointer-events:none;}
+.coh-title{font-family:var(--font-main);font-weight:700;font-size:34px;color:#fff;text-transform:uppercase;line-height:.98;}
+.coh-sub{font-family:var(--font-body);font-size:18px;color:rgba(255,255,255,0.6);margin-top:7px;}
+.coh-bar{width:38px;height:3px;background:rgba(255,255,255,0.22);margin-top:13px;}
+.coh-r{flex:1;background:#fff;padding:64px 40px;display:flex;flex-direction:column;justify-content:center;gap:18px;}
+.coh-q{border-left:3px solid var(--green);padding:11px 16px;background:#f8f8f8;}
+.coh-q p{font-family:var(--font-main);font-weight:600;font-size:18px;color:#111;margin-bottom:9px;}
+.coh-line{height:1px;background:#ddd;margin-bottom:4px;}
+
+/* =================================================================
+   SELF-ASSESSMENT
+================================================================= */
+.sl-assess{flex-direction:column;background:#fff;}
+.assess-head{padding:64px 38px 14px;border-bottom:1px solid #eee;flex-shrink:0;}
+.assess-head h2{font-family:var(--font-main);font-weight:700;font-size:22px;color:#111;text-transform:uppercase;}
+.assess-head p{font-family:var(--font-body);font-size:18px;color:#aaa;margin-top:3px;}
+.assess-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;}
+.ac{padding:18px 26px;border-right:1px solid #eee;border-bottom:1px solid #eee;}
+.ac:nth-child(even){border-right:none;}
+.ac:nth-child(3),.ac:nth-child(4){border-bottom:none;}
+.ac-title{font-family:var(--font-secondary);font-weight:700;font-size:18px;color:var(--green);text-transform:uppercase;letter-spacing:2px;margin-bottom:11px;padding-bottom:6px;border-bottom:1px solid #eee;}
+.ac-row{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:6px 0;border-bottom:1px solid #f5f5f5;}
+.ac-row:last-child{border-bottom:none;}
+.ac-text{font-family:var(--font-body);font-size:18px;color:#444;flex:1;line-height:1.4;}
+.rating{display:flex;gap:5px;}
+.dot{width:11px;height:11px;border-radius:50%;background:#e5e5e5;cursor:pointer;transition:background .15s;}
+.dot.on{background:var(--green);}
+
+/* =================================================================
+   CREATE YOUR OWN MOVE
+================================================================= */
+.sl-own{flex-direction:column;background:#fafafa;}
+.own-head{background:#000;padding:13px 34px;padding-top:64px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.own-head h2{font-family:var(--font-main);font-weight:700;font-size:19px;color:var(--green);text-transform:uppercase;}
+.own-head p{font-family:var(--font-body);font-size:18px;color:#666;}
+.own-sit{border-bottom:1px solid #e5e5e5;padding:13px 34px;display:flex;align-items:center;gap:14px;background:#fff;flex-shrink:0;}
+.own-sit-lbl{font-family:var(--font-secondary);font-size:8px;font-weight:700;letter-spacing:3px;color:#aaa;text-transform:uppercase;flex-shrink:0;}
+.own-sit-line{flex:1;height:1px;background:#e0e0e0;}
+.own-grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);}
+.own-bl{padding:17px 20px;border-right:1px solid #e8e8e8;display:flex;flex-direction:column;gap:6px;}
+.own-bl:last-child{border-right:none;}
+.own-lbl{font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:3px;color:var(--green);text-transform:uppercase;}
+.own-hint{font-family:var(--font-body);font-size:18px;color:#bbb;font-style:italic;margin-bottom:3px;}
+.own-icons{padding:12px 34px;border-top:1px solid #e8e8e8;display:flex;align-items:center;gap:18px;background:#fff;flex-shrink:0;}
+.own-icons span{font-family:var(--font-secondary);font-size:18px;font-weight:700;letter-spacing:2px;color:#aaa;text-transform:uppercase;}
+.own-check{display:flex;align-items:center;gap:6px;font-family:var(--font-body);font-size:18px;color:#444;cursor:pointer;}
+
+/* =================================================================
+   CLOSING SLIDE
+================================================================= */
+.sl-close{flex-direction:row;background:#000;}
+.close-l{width:42%;background:var(--green);display:flex;flex-direction:column;justify-content:flex-end;padding:54px 42px 42px;position:relative;overflow:hidden;}
+.close-l::before{content:'';position:absolute;top:-70px;right:-90px;width:310px;height:310px;border-radius:50%;border:42px solid rgba(0,0,0,0.09);pointer-events:none;}
+.close-l::after{content:'';position:absolute;top:30px;right:-28px;width:190px;height:190px;border-radius:50%;border:30px solid rgba(0,0,0,0.06);pointer-events:none;}
+.cl-over{font-family:var(--font-secondary);font-size:18px;letter-spacing:4px;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:9px;position:relative;z-index:2;}
+.cl-quote{font-family:var(--font-main);font-weight:900;font-size:40px;color:#fff;line-height:.92;text-transform:uppercase;position:relative;z-index:2;margin-bottom:13px;}
+.cl-bar{width:42px;height:3px;background:rgba(255,255,255,0.28);position:relative;z-index:2;}
+.close-r{flex:1;display:flex;flex-direction:column;justify-content:center;padding:78px 50px;gap:20px;position:relative;}
+
+/* LOGO SIZE — Closing slide logo: change height to resize */
+#close-logo img{height:34px;width:auto;object-fit:contain;display:block;}
+
+.cr-body{font-family:var(--font-body);font-size:18px;color:rgba(255,255,255,0.6);line-height:1.8;}
+.cr-body strong{color:rgba(255,255,255,0.88);font-weight:600;}
+.restart-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #2a2a2a;color:#555;padding:10px 22px;border-radius:3px;font-family:var(--font-secondary);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .2s;align-self:flex-start;}
+.restart-btn:hover{border-color:var(--green);color:var(--green);}
+/* REMOVE CIRCLES ON PAGE 36 / CLOSING SLIDE */
+.close-l::before,
+.close-l::after{
+  display:none;
+}
+/* REMOVE CIRCLE ON PAGE 18 / COHERENCE QUESTIONS */
+.coh-l::before{
+  display:none;
+}
+</style>
+</head>
+<body>
+<div id="pb">
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div id="sb-head">
+    <div id="sb-logo"><img src="images/image.png" alt="The Dignitas Agency"></div>
+    <button id="sb-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <div id="toc">
+    <div class="toc-grp">
+      <div class="toc-grp-label">Introduction</div>
+      <button class="toc-link" onclick="goTo(0)"><span class="toc-num">01</span>Cover</button>
+      <button class="toc-link" onclick="goTo(1)"><span class="toc-num">02</span>How to Use</button>
+      <button class="toc-link" onclick="goTo(2)"><span class="toc-num">03</span>The Premise</button>
+      <button class="toc-link" onclick="goTo(3)"><span class="toc-num">04</span>The Move Pattern</button>
+      <button class="toc-link" onclick="goTo(4)"><span class="toc-num">05</span>Structure of Moves</button>
+      <button class="toc-link" onclick="goTo(5)"><span class="toc-num">06</span>Playbook Move Icons</button>
+      <button class="toc-link" onclick="goTo(6)"><span class="toc-num">07</span>Scan the Icons</button>
+    </div>
+    <div class="toc-grp">
+      <div class="toc-grp-label">Part I — Overwhelm as Signal</div>
+      <button class="toc-link" onclick="goTo(7)"><span class="toc-num">08</span>Part I Title</button>
+      <button class="toc-link" onclick="goTo(8)"><span class="toc-num">09</span>Reframing Overwhelm</button>
+      <button class="toc-link" onclick="goTo(9)"><span class="toc-num">10</span>Signal Inventory</button>
+      <button class="toc-link" onclick="goTo(10)"><span class="toc-num">11</span>Interrupting Reactivity</button>
+      <button class="toc-link" onclick="goTo(11)"><span class="toc-num">12</span>Moves Intro</button>
+      <button class="toc-link" onclick="goTo(12)"><span class="toc-num">13</span>Move: Pressure Spikes</button>
+      <button class="toc-link" onclick="goTo(13)"><span class="toc-num">14</span>Move: Carrying Too Much</button>
+    </div>
+    <div class="toc-grp">
+      <div class="toc-grp-label">Part II — Complexity &amp; Coherence</div>
+      <button class="toc-link" onclick="goTo(14)"><span class="toc-num">15</span>Part II Title</button>
+      <button class="toc-link" onclick="goTo(15)"><span class="toc-num">16</span>Seeing the System</button>
+      <button class="toc-link" onclick="goTo(16)"><span class="toc-num">17</span>Internal Mapping</button>
+      <button class="toc-link" onclick="goTo(17)"><span class="toc-num">18</span>Coherence Questions</button>
+      <button class="toc-link" onclick="goTo(18)"><span class="toc-num">19</span>Move: Too Many Stakeholders</button>
+      <button class="toc-link" onclick="goTo(19)"><span class="toc-num">20</span>Move: Same Problem Repeats</button>
+    </div>
+    <div class="toc-grp">
+      <div class="toc-grp-label">Part III — Discernment in Decisions</div>
+      <button class="toc-link" onclick="goTo(20)"><span class="toc-num">21</span>Part III Title</button>
+      <button class="toc-link" onclick="goTo(21)"><span class="toc-num">22</span>Moving Beyond Urgency</button>
+      <button class="toc-link" onclick="goTo(22)"><span class="toc-num">23</span>The Discernment Lens</button>
+      <button class="toc-link" onclick="goTo(23)"><span class="toc-num">24</span>Decision Readiness</button>
+      <button class="toc-link" onclick="goTo(24)"><span class="toc-num">25</span>Move: Pressured Without Clarity</button>
+      <button class="toc-link" onclick="goTo(25)"><span class="toc-num">26</span>Move: Every Option Feels Wrong</button>
+    </div>
+    <div class="toc-grp">
+      <div class="toc-grp-label">Part IV — Presence &amp; Voice</div>
+      <button class="toc-link" onclick="goTo(26)"><span class="toc-num">27</span>Part IV Title</button>
+      <button class="toc-link" onclick="goTo(27)"><span class="toc-num">28</span>Leadership Presence</button>
+      <button class="toc-link" onclick="goTo(28)"><span class="toc-num">29</span>Clarifying Your Voice</button>
+      <button class="toc-link" onclick="goTo(29)"><span class="toc-num">30</span>After-Action Reflection</button>
+      <button class="toc-link" onclick="goTo(30)"><span class="toc-num">31</span>Move: Prove Yourself</button>
+      <button class="toc-link" onclick="goTo(31)"><span class="toc-num">32</span>Move: Over-Explaining</button>
+    </div>
+    <div class="toc-grp">
+      <div class="toc-grp-label">Integration</div>
+      <button class="toc-link" onclick="goTo(32)"><span class="toc-num">33</span>Integration Title</button>
+      <button class="toc-link" onclick="goTo(33)"><span class="toc-num">34</span>Self-Assessment</button>
+      <button class="toc-link" onclick="goTo(34)"><span class="toc-num">35</span>Create Your Own Move</button>
+      <button class="toc-link" onclick="goTo(35)"><span class="toc-num">36</span>Closing Reflection</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <button id="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+  <div id="topbar-logo"><img src="images/image.png" alt="The Dignitas Agency"></div>
+</div>
+
+<!-- SLIDE AREA -->
+<div id="slide-area">
+
+<!-- SLIDE 00 - COVER -->
+<div class="slide sl-cover active">
+  <div class="cover-bg"></div>
+  <div class="cover-left">
+    <div class="cover-photo"></div>
+    <div class="cover-photo-overlay"></div>
+  </div>
+  <div class="cover-right">
+    <img src="images/Watermark.png" alt="" class="cover-dring" aria-hidden="true">
+    <img src="images/image.png" alt="The Dignitas Agency" id="cover-logo">
+    <div class="cover-title">From Overwhelm to Influence&#x2122; Leadership Playbook</div>
+    <div class="cover-accent"></div>
+    <div class="cover-sub">A Self-Guided Leadership Companion for Clarity, Discernment, and Presence</div>
+    <button class="start-btn" onclick="goTo(1)">Start &#x2192;</button>
+  </div>
+</div>
+
+<!-- SLIDE 01 - HOW TO USE -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp dark"><div class="lp-lbl">Introduction</div><div class="lp-title">How to Use This Playbook</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <p class="rp-p" style="font-style:italic;color:#aaa;">This is not a workbook to rush through.</p>
+    <div class="rp-h3">This playbook is designed to be:</div>
+    <ul style="margin-bottom:14px;"><li class="rp-li">Moved through slowly or selectively</li><li class="rp-li">Used <strong>mid-week, mid-decision, mid-pressure</strong></li><li class="rp-li">Used in seasons of complexity or transition</li><li class="rp-li">A tool that teaches you to generate your own leadership moves over time</li><li class="rp-li">Returned to when leadership pressure resurfaces</li></ul>
+    <p class="rp-p">You do not need to complete this in order.</p>
+    <div class="rp-quote">The practice is noticing which move you&#8217;re resisting &#8212; and what information it is revealing.</div>
+  </div>
+</div>
+
+<!-- SLIDE 02 - THE PREMISE -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Orientation</div><div class="lp-title">From Overwhelm to Influence</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <div class="rp-eye">The Premise</div>
+    <div class="rp-h2">Overwhelm is not a leadership failure. It is a signal.</div>
+    <ul style="margin-bottom:12px;"><li class="rp-li">Something is misaligned</li><li class="rp-li">A system is asking for redesign</li><li class="rp-li">A decision is being rushed or avoided</li><li class="rp-li">Your presence is being fragmented</li></ul>
+    <div class="rp-quote">Influence does not come from doing more. It comes from <strong>clarity, coherence, and grounded presence.</strong></div>
+    <div class="rp-h3">4 Core Movements</div>
+    <ul><li class="rp-li"><strong>Part I</strong> &#8212; Overwhelm as Signal</li><li class="rp-li"><strong>Part II</strong> &#8212; Complexity &amp; Coherence</li><li class="rp-li"><strong>Part III</strong> &#8212; Discernment in Decisions</li><li class="rp-li"><strong>Part IV</strong> &#8212; Presence &amp; Voice</li></ul>
+  </div>
+</div>
+
+<!-- SLIDE 03 - MOVE PATTERN -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp black"><div class="lp-lbl">The Framework</div><div class="lp-title">The Move Pattern</div><div class="lp-bar" style="background:rgba(59,181,74,0.35);"></div></div>
+  <div class="rp">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
+      <span style="font-family:var(--font-secondary);font-weight:900;font-size:13px;letter-spacing:2px;color:var(--green);">PAUSE</span><span style="color:#ddd;font-size:18px;">&#x2192;</span>
+      <span style="font-family:var(--font-secondary);font-weight:900;font-size:13px;letter-spacing:2px;color:var(--green);">NAME</span><span style="color:#ddd;font-size:18px;">&#x2192;</span>
+      <span style="font-family:var(--font-secondary);font-weight:900;font-size:13px;letter-spacing:2px;color:var(--green);">REFRAME</span><span style="color:#ddd;font-size:18px;">&#x2192;</span>
+      <span style="font-family:var(--font-secondary);font-weight:900;font-size:13px;letter-spacing:2px;color:var(--green);">ACT</span><span style="color:#ddd;font-size:18px;">&#x2192;</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px;">
+      <div style="border-left:3px solid var(--green);padding:11px 13px;background:#f8f8f8;"><p style="font-family:var(--font-secondary);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:4px;">PAUSE</p><p class="rp-p" style="margin:0;font-size:12px;">Interrupt urgency long enough to widen perspective.</p></div>
+      <div style="border-left:3px solid var(--green);padding:11px 13px;background:#f8f8f8;"><p style="font-family:var(--font-secondary);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:4px;">NAME</p><p class="rp-p" style="margin:0;font-size:12px;">Identify what&#8217;s actually happening beneath the surface.</p></div>
+      <div style="border-left:3px solid var(--green);padding:11px 13px;background:#f8f8f8;"><p style="font-family:var(--font-secondary);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:4px;">REFRAME</p><p class="rp-p" style="margin:0;font-size:12px;">Shift how the situation is understood so new options appear.</p></div>
+      <div style="border-left:3px solid var(--green);padding:11px 13px;background:#f8f8f8;"><p style="font-family:var(--font-secondary);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:4px;">ACT</p><p class="rp-p" style="margin:0;font-size:12px;">Take the smallest responsible move that creates clarity or momentum.</p></div>
+    </div>
+    <p class="rp-p" style="font-size:12px;color:#bbb;font-style:italic;">The moves are not scripts. They keep agency with you, the leader.</p>
+  </div>
+</div>
+
+<!-- SLIDE 04 - STRUCTURE -->
+<div class="slide sl-struct">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="struct-bar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="5.5" stroke="#fff" stroke-width="1.8"/></svg><h2>Structure of Playbook Moves</h2></div>
+  <div class="struct-cols">
+    <div class="sc"><div class="sc-num">1</div><div class="sc-name">Pause</div><div class="sc-sub">"Before responding, take three breaths and stop solving."</div><div class="sc-item">Interrupts reactivity</div><div class="sc-item">Creates space before action</div></div>
+    <div class="sc"><div class="sc-num">2</div><div class="sc-name">Name</div><div class="sc-sub">What&#8217;s likely happening beneath the surface</div><div class="sc-item">System has lost prioritization</div><div class="sc-item">You&#8217;re the buffer</div></div>
+    <div class="sc"><div class="sc-num">3</div><div class="sc-name">Reframe</div><div class="sc-sub">Shift how the situation is understood</div><div class="sc-item">"This isn&#8217;t a speed problem."</div><div class="sc-item">"It&#8217;s a prioritization problem."</div></div>
+    <div class="sc"><div class="sc-num">4</div><div class="sc-name">Act</div><div class="sc-sub">A clean, bounded leadership move</div><div class="sc-item">Name what will not move yet</div><div class="sc-item">Communicate clearly</div></div>
+  </div>
+  <div class="struct-foot"><div class="sf-lbl">Integration Prompt</div><div class="sf-div"></div><div class="sf-p">What did urgency make you believe that wasn&#8217;t actually true?</div></div>
+</div>
+
+<!-- SLIDE 05 - ICON LEGEND -->
+<div class="slide sl-icons">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="icons-head"><h2>Playbook Move Icons</h2><p>When pressure is high, scan the icons first. They&#8217;ll guide you to the right section faster than analysis.</p></div>
+  <div class="icons-grid">
+    <div class="ic"><div class="ic-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="3" x2="12" y2="21" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M5 7l7-4 7 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10l4 6H3l4-6z" stroke="white" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M17 10l4 6h-8l4-6z" stroke="white" stroke-width="1.8" stroke-linejoin="round" fill="none"/><line x1="7" y1="21" x2="17" y2="21" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ic-name">Decision</div><div class="ic-desc">Moments involving judgment, timing, trade-offs, or authority.</div><div class="ic-bar"></div></div>
+    <div class="ic"><div class="ic-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12a8 8 0 0 1 14.93-3H16v2h6V5l-2 2a10 10 0 1 0 .07 10.07" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="ic-name">Systems</div><div class="ic-desc">Moments where structure, roles, or process &#8212; not effort &#8212; are the constraint.</div><div class="ic-bar"></div></div>
+    <div class="ic"><div class="ic-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="4" stroke="green" stroke-width="1.8" fill="none"/><path d="M3 21v-1a6 6 0 0 1 6-6h.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M16 11c0 0 1.5 1 1.5 3s-1.5 3-1.5 3" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M18.5 9c0 0 2.5 1.5 2.5 5s-2.5 5-2.5 5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><line x1="13" y1="14" x2="13" y2="20" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ic-name">Voice</div><div class="ic-desc">Moments involving communication, presence, messaging, or influence.</div><div class="ic-bar"></div></div>
+    <div class="ic"><div class="ic-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 2h12v4l-4 4 4 4v4H6v-4l4-4-4-4V2z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><line x1="4" y1="2" x2="20" y2="2" stroke="white" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="22" x2="20" y2="22" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M10 16h4" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="ic-name">Pace</div><div class="ic-desc">Moments where urgency, overload, or sustainability are in question.</div><div class="ic-bar"></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 06 - SCAN ICONS -->
+<div class="slide sl-full slide-dark">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="full-content">
+    <div class="full-tag">Quick Reference</div>
+    <div class="full-title">When Pressure Is High,<br>Scan the Icons First.</div>
+    <div class="full-body">They&#8217;ll guide you to the right section faster than analysis.</div>
+    <div class="icon-row">
+      <div class="icon-pill"><div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="3" x2="12" y2="21" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M5 7l7-4 7 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10l4 6H3l4-6z" stroke="white" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M17 10l4 6h-8l4-6z" stroke="white" stroke-width="1.8" stroke-linejoin="round" fill="none"/><line x1="7" y1="21" x2="17" y2="21" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><span>Decision</span></div>
+      <div class="icon-pill"><div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12a8 8 0 0 1 14.93-3H16v2h6V5l-2 2a10 10 0 1 0 .07 10.07" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Systems</span></div>
+      <div class="icon-pill"><div class="icon-circle" ><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="8" r="4" stroke="white" stroke-width="1.8" fill="none"/><path d="M3 21v-1a6 6 0 0 1 6-6h.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M16 11c0 0 1.5 1 1.5 3s-1.5 3-1.5 3" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M18.5 9c0 0 2.5 1.5 2.5 5s-2.5 5-2.5 5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><line x1="13" y1="14" x2="13" y2="20" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><span>Voice</span></div>
+      <div class="icon-pill"><div class="icon-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 2h12v4l-4 4 4 4v4H6v-4l4-4-4-4V2z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><line x1="4" y1="2" x2="20" y2="2" stroke="white" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="22" x2="20" y2="22" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M10 16h4" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg></div><span>Pace</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 07 - PART I TITLE -->
+<div class="slide sl-part slide-dark">
+  <div class="part-main">
+    <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="opacity:0.05;">
+    <div class="part-lbl">Part I</div>
+    <div class="part-title">Overwhelm<br>as Signal</div>
+    <div class="part-desc">Reframing pressure as information &#8212; and learning to read what it&#8217;s pointing to.</div>
+    <div class="part-num">01</div>
+  </div>
+  <div class="part-pat"></div>
+  </div>
+
+<!-- SLIDE 08 - REFRAMING OVERWHELM -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Part I</div><div class="lp-title">Reframing Overwhelm</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <div class="rp-h3">Overwhelm often appears when:</div>
+    <ul style="margin-bottom:14px;"><li class="rp-li">Pace exceeds capacity</li><li class="rp-li">Responsibility exceeds authority</li><li class="rp-li">Systems are unclear</li><li class="rp-li">Emotional labor is unacknowledged</li></ul>
+    <div class="cpair"><div class="cp g"><strong>Instead of asking</strong><p>"What&#8217;s wrong with me?"</p></div><div class="cp gr"><strong>We ask</strong><p>"What is this pressure pointing to?"</p></div></div>
+    <div class="rp-h3">Reflection: Naming the Signal</div>
+    <label class="refl-lbl">Where is overwhelm showing up most right now?</label><textarea class="write-line" placeholder="Type your response here..."></textarea>
+    <label class="refl-lbl">What story do you usually tell yourself about this feeling?</label><textarea class="write-line" placeholder="Type your response here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 09 - SIGNAL INVENTORY -->
+<div class="slide sl-inv slide-green">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="filter:brightness(10);opacity:0.07;">
+  <div class="inv-l"><div class="inv-badge">Complete When Pressure Spikes</div><div class="inv-title">Signal Inventory</div><div class="inv-sub">Surface what&#8217;s happening beneath the urgency.</div><div class="inv-bar"></div></div>
+  <div class="inv-r">
+    <div class="inv-q"><div class="inv-ql">What feels urgent?</div> <textarea class="write-line large" placeholder="Type your response here..."></textarea></div>
+    <div class="inv-q"><div class="inv-ql">What feels heavy?</div> <textarea class="write-line large" placeholder="Type your response here..."></textarea></div>
+    <div class="inv-q"><div class="inv-ql">What feels unclear?</div> <textarea class="write-line large" placeholder="Type your response here..."></textarea></div>
+  </div>
+</div>
+
+<!-- SLIDE 10 - INTERRUPTING REACTIVITY -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp dark"><div class="lp-lbl">Part I</div><div class="lp-title">Interrupting Reactivity</div><div class="lp-bar" style="background:rgba(59,181,74,0.35);"></div></div>
+  <div class="rp">
+    <div class="green-box">Overwhelm narrows perspective. Influence requires widening it.</div>
+    <div class="rp-h3">Pause Practice</div>
+    <ul style="margin-bottom:14px;"><li class="rp-li">Pause for three breaths</li><li class="rp-li">Name what is actually happening (not what you fear is happening)</li><li class="rp-li">Ask: <em>What am I being asked to hold that may not be mine?</em></li></ul>
+    <div class="rp-h3">Reflection</div>
+    <textarea class="write-line large" placeholder="Type your response here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 11 - MOVES INTRO -->
+<div class="slide sl-full slide-dark">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="full-content">
+    <div class="full-tag">Part I &#8212; Playbook Moves</div>
+    <div class="full-title">When This Happens,<br>Try This.</div>
+    <div class="full-body">This section turns reflection into action. Use it when you don&#8217;t want to analyze &#8212; you want to move.<br><br>You don&#8217;t need to use the &#8220;right&#8221; move. Notice which move you&#8217;re resisting &#8212; that&#8217;s where the learning is.</div>
+  </div>
+</div>
+
+<!-- SLIDE 12 - MOVE: PRESSURE SPIKES -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When Pressure Spikes or Everything Feels Urgent</div><div class="move-icons-tag">&#x23F3; PACE &nbsp;&#xB7;&nbsp; &#x1F504; SYSTEMS</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Stop solving. Take three slow breaths. Let urgency pass without acting on it.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">Multiple timelines have collapsed into one</li><li class="mb-li">You&#8217;re being positioned as the buffer</li><li class="mb-li">The system has lost its ability to prioritize</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">This is not a speed problem. It&#8217;s a prioritization and containment problem.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">Identify the one thing that truly needs movement this week</li><li class="mb-li">Name one thing that will not move yet</li><li class="mb-li">Communicate that containment clearly</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What did urgency make you believe that wasn&#8217;t actually true?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 13 - MOVE: CARRYING TOO MUCH -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When You&#8217;re Carrying More Than Feels Reasonable</div><div class="move-icons-tag">&#x23F3; PACE &nbsp;&#xB7;&nbsp; &#x1F504; SYSTEMS</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Notice the weight you&#8217;re holding before explaining or fixing it.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">Ownership is unclear or implicit</li><li class="mb-li">You&#8217;ve been rewarded for over-functioning</li><li class="mb-li">Letting go feels irresponsible</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">Carrying everything is not leadership. It&#8217;s often a signal of unclear design.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">Name the invisible load in one sentence</li><li class="mb-li">Ask where ownership needs to be clarified</li><li class="mb-li">Release one task that doesn&#8217;t require you</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What would change if you carried 20% less?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 14 - PART II TITLE -->
+<div class="slide sl-part slide-dark">
+  <div class="part-main">
+    <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="opacity:0.05;">
+    <div class="part-lbl">Part II</div><div class="part-title">Complexity<br>&amp; Coherence</div>
+    <div class="part-desc">Seeing the system clearly &#8212; finding alignment between expectations, structure, capacity, and values.</div>
+    <div class="part-num">02</div>
+  </div>
+  <div class="part-pat"></div>
+  </div>
+
+
+<!-- SLIDE 15 - SEEING THE SYSTEM -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Part II</div><div class="lp-title">Seeing the System</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <p class="rp-p">Most leadership challenges are not personal. They are <strong>systemic.</strong></p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 16px;"><div style="text-align:center;padding:10px 4px;background:#f4f4f4;border-radius:3px;font-family:var(--font-secondary);font-size:11px;font-weight:700;color:var(--green);">Expectations</div><div style="text-align:center;padding:10px 4px;background:#f4f4f4;border-radius:3px;font-family:var(--font-secondary);font-size:11px;font-weight:700;color:var(--green);">Structures</div><div style="text-align:center;padding:10px 4px;background:#f4f4f4;border-radius:3px;font-family:var(--font-secondary);font-size:11px;font-weight:700;color:var(--green);">Capacity</div><div style="text-align:center;padding:10px 4px;background:#f4f4f4;border-radius:3px;font-family:var(--font-secondary);font-size:11px;font-weight:700;color:var(--green);">Values</div></div>
+    <div class="rp-h3">Mapping the External System</div>
+    <ul style="margin-bottom:13px;"><li class="rp-li">Who are the key stakeholders?</li><li class="rp-li">What constraints are shaping this situation?</li><li class="rp-li">What competing priorities are in play?</li><li class="rp-li">What information is missing?</li></ul>
+     <label class="refl-lbl">Notes:</label>
+    <textarea class="write-line large" placeholder="Type here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 16 - INTERNAL MAPPING -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp dark"><div class="lp-lbl">Part II</div><div class="lp-title">Seeing the System</div><div class="lp-bar" style="background:rgba(59,181,74,0.35);"></div></div>
+  <div class="rp">
+    <div class="rp-h3">Mapping the Internal System</div>
+    <p class="rp-p">Leadership pressure also creates internal complexity.</p>
+    <ul style="margin-bottom:14px;"><li class="rp-li">What assumptions are you making?</li><li class="rp-li">Where might you be over-controlling?</li><li class="rp-li">What are you avoiding?</li><li class="rp-li">What emotional labor are you carrying silently?</li></ul>
+    <label class="refl-lbl">Notes:</label>
+    <textarea class="write-line large" placeholder="Type here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 17 - COHERENCE QUESTIONS -->
+<div class="slide sl-coh">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="coh-l"><div class="lp-lbl">Part II</div><div class="coh-title">Coherence Questions</div><div class="coh-sub">Use these when stuck.</div><div class="coh-bar"></div></div>
+  <div class="coh-r">
+    <div class="coh-q"><p>What is this system actually designed to produce?</p><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    <div class="coh-q"><p>Where is misalignment being exposed?</p><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    <div class="coh-q"><p>What would clarity look like &#8212; not perfection?</p><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+  </div>
+</div>
+
+<!-- SLIDE 18 - MOVE: TOO MANY STAKEHOLDERS -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When There Are Too Many Stakeholders &amp; No Clear Direction</div><div class="move-icons-tag">&#x1F504; SYSTEMS &nbsp;&#xB7;&nbsp; &#x2696;&#xFE0F; DECISION</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Resist the urge to build consensus before clarity.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">Alignment is being confused with agreement</li><li class="mb-li">Decision authority is diffused</li><li class="mb-li">Conflict avoidance is slowing progress</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">This is not a collaboration problem. It&#8217;s an ownership problem.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">Name who is accountable for deciding</li><li class="mb-li">Clarify who provides input vs. who is informed</li><li class="mb-li">Proceed accordingly</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">Where has lack of ownership been disguised as collaboration?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 19 - MOVE: SAME PROBLEM -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When You Keep Solving the Same Problem Over and Over</div><div class="move-icons-tag">&#x1F504; SYSTEMS</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Stop improving the workaround.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">Temporary fixes are masking design flaws</li><li class="mb-li">Effort is compensating for structure</li><li class="mb-li">The system was never built for this level of demand</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">If it keeps breaking, it&#8217;s a design issue &#8212; not a performance issue.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">Map the recurring issue</li><li class="mb-li">Name the current workaround</li><li class="mb-li">Identify the missing design element</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What keeps breaking because it was never designed to hold this?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 20 - PART III TITLE -->
+<div class="slide sl-part slide-dark">
+  <div class="part-main">
+    <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="opacity:0.05;">
+    <div class="part-lbl">Part III</div><div class="part-title">Discernment<br>in Decisions</div>
+    <div class="part-desc">Moving beyond urgency to make decisions grounded in clarity, not pressure.</div>
+    <div class="part-num">03</div>
+  </div>
+  <div class="part-pat"></div>
+  </div>
+
+
+<!-- SLIDE 21 - BEYOND URGENCY -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Part III</div><div class="lp-title">Moving Beyond Urgency</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <p class="rp-p">Not all decisions need to be made now. Not all delays are avoidance.</p>
+    <div class="rp-h3">Discernment requires distinguishing:</div>
+    <div class="cpair"><div class="cp g"><strong>Pressure</strong><p>vs Importance</p></div><div class="cp g"><strong>Speed</strong><p>vs Clarity</p></div><div class="cp g"><strong>Fear</strong><p>vs Intuition</p></div><div class="cp gr"><strong>Your authority</strong><p>to choose the timing</p></div></div>
+    <label class="refl-lbl">Describe the decision:</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+    <label class="refl-lbl">Why does it feel charged?</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 22 - DISCERNMENT LENS -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp dark"><div class="lp-lbl">Part III</div><div class="lp-title">The Discernment Lens</div><div class="lp-bar" style="background:rgba(59,181,74,0.35);"></div></div>
+  <div class="rp">
+    <p class="rp-p" style="margin-bottom:13px;">Reflect through each lens:</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="border-left:3px solid var(--green);padding:10px 13px;background:#f8f8f8;display:flex;align-items:center;gap:13px;"><label style="font-family:var(--font-secondary);font-weight:900;font-size:11px;letter-spacing:2px;color:var(--green);flex-shrink:0;min-width:76px;">LOGIC</label><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+      <div style="border-left:3px solid var(--green);padding:10px 13px;background:#f8f8f8;display:flex;align-items:center;gap:13px;"><label style="font-family:var(--font-secondary);font-weight:900;font-size:11px;letter-spacing:2px;color:var(--green);flex-shrink:0;min-width:76px;">INTUITION</label><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+      <div style="border-left:3px solid var(--green);padding:10px 13px;background:#f8f8f8;display:flex;align-items:center;gap:13px;"><label  style="font-family:var(--font-secondary);font-weight:900;font-size:11px;letter-spacing:2px;color:var(--green);flex-shrink:0;min-width:76px;">CONTEXT</label><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+      <div style="border-left:3px solid var(--green);padding:10px 13px;background:#f8f8f8;display:flex;align-items:center;gap:13px;"><label style="font-family:var(--font-secondary);font-weight:900;font-size:11px;letter-spacing:2px;color:var(--green);flex-shrink:0;min-width:76px;">RISK</label><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 23 - DECISION READINESS -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Part III</div><div class="lp-title">Decision Readiness Check</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <div class="rp-h3">This decision requires:</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin:11px 0 17px;">
+      <label style="display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:14px;color:#333;cursor:pointer;"><input type="checkbox"> Immediate action</label>
+      <label style="display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:14px;color:#333;cursor:pointer;"><input type="checkbox"> More information</label>
+      <label style="display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:14px;color:#333;cursor:pointer;"><input type="checkbox"> More conversation</label>
+      <label style="display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:14px;color:#333;cursor:pointer;"><input type="checkbox"> Clearer ownership</label>
+    </div>
+    <label class="refl-lbl">Next smallest responsible step:</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+    <div class="rp-h3">Communicating the Decision</div>
+    <label class="refl-lbl">Draft your message:</label><span class="refl-line"></label><textarea class="write-line large" placeholder="Type here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 24 - MOVE: PRESSURED WITHOUT CLARITY -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When You&#8217;re Being Pressured to Decide Without Clarity</div><div class="move-icons-tag">&#x2696;&#xFE0F; DECISION &nbsp;&#xB7;&nbsp; &#x23F3; PACE</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Do not decide yet. Clarify the decision first.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">Anxiety is driving urgency</li><li class="mb-li">Others want relief more than resolution</li><li class="mb-li">The real decision hasn&#8217;t been named</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">Slowing the frame is not delaying the decision.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">&#8220;I&#8217;m not delaying. I&#8217;m clarifying what we&#8217;re actually deciding.&#8221;</li><li class="mb-li">Name what is reversible vs. what is not</li><li class="mb-li">Identify who needs to be involved</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What decision are others trying to offload onto you?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 25 - MOVE: EVERY OPTION WRONG -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When Every Option Feels Wrong</div><div class="move-icons-tag">&#x2696;&#xFE0F; DECISION</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Stop choosing between the given options.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">The decision is framed too narrowly</li><li class="mb-li">You&#8217;re operating within false constraints</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">If neither option works, the frame is wrong.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">Ask: &#8220;What&#8217;s the third path?&#8221;</li><li class="mb-li">Ask: &#8220;What would this look like if one constraint were removed?&#8221;</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What assumption is limiting your options?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 26 - PART IV TITLE -->
+<div class="slide sl-part slide-dark">
+  <div class="part-main">
+    <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="opacity:0.05;">
+    <div class="part-lbl">Part IV</div><div class="part-title">Presence<br>&amp; Voice</div>
+    <div class="part-desc">Leading from coherence between body, breath, and message &#8212; not from performance.</div>
+    <div class="part-num">04</div>
+  </div>
+  <div class="part-pat"></div>
+  </div>
+
+
+<!-- SLIDE 27 - LEADERSHIP PRESENCE -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Part IV</div><div class="lp-title">Leadership Presence</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <div class="rp-quote">Presence is not performance. It is coherence between body, breath, and message.</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:13px 0 17px;"><div style="text-align:center;padding:12px;background:#000;border-radius:3px;font-family:var(--font-secondary);font-weight:900;font-size:12px;color:var(--green);">BODY</div><div style="text-align:center;padding:12px;background:#000;border-radius:3px;font-family:var(--font-secondary);font-weight:900;font-size:12px;color:var(--green);">BREATH</div><div style="text-align:center;padding:12px;background:#000;border-radius:3px;font-family:var(--font-secondary);font-weight:900;font-size:12px;color:var(--green);">MESSAGE</div></div>
+    <div class="rp-h3">Pre-Meeting Reset</div>
+    <ul style="margin-bottom:13px;"><li class="rp-li">Where is tension in my body?</li><li class="rp-li">What needs to soften?</li><li class="rp-li">What is the simplest true thing I can say?</li></ul>
+    <label class="refl-lbl">Notes:</label>
+    <textarea class="write-line large" placeholder="Type here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 28 - CLARIFYING YOUR VOICE -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp dark"><div class="lp-lbl">Part IV</div><div class="lp-title">Clarifying Your Voice</div><div class="lp-bar" style="background:rgba(59,181,74,0.35);"></div></div>
+  <div class="rp">
+    <div class="green-box">Influential leadership is not louder. It is clearer.</div>
+    <div class="rp-h3">Voice Reflection</div>
+    <label class="refl-lbl">What do I want people to feel after this interaction?</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+    <label class="refl-lbl">What value do I want to embody?</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+    <label class="refl-lbl">What am I tempted to over-explain?</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+    <label class="refl-lbl">Draft your core message:</label><textarea class="write-line large" placeholder="Type here..."></textarea>
+  </div>
+</div>
+
+<!-- SLIDE 29 - AFTER-ACTION REFLECTION -->
+<div class="slide sl-split">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="lp green"><div class="lp-lbl">Part IV</div><div class="lp-title">After-Action Reflection</div><div class="lp-bar"></div></div>
+  <div class="rp">
+    <p class="rp-p">Use this after key moments.</p>
+    <div style="display:flex;flex-direction:column;gap:11px;margin-top:10px;">
+      <div style="border-left:3px solid var(--green);padding:11px 15px;background:#f8f8f8;">
+        <p style="font-family:var(--font-secondary);font-weight:700;font-size:11px;color:#111;margin-bottom:7px;text-transform:uppercase;letter-spacing:1px;">What worked?</p><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+      <div style="border-left:3px solid var(--green);padding:11px 15px;background:#f8f8f8;">
+        <p style="font-family:var(--font-secondary);font-weight:700;font-size:11px;color:#111;margin-bottom:7px;text-transform:uppercase;letter-spacing:1px;">What felt aligned?</p><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+      <div style="border-left:3px solid var(--green);padding:11px 15px;background:#f8f8f8;">
+        <p style="font-family:var(--font-secondary);font-weight:700;font-size:11px;color:#111;margin-bottom:7px;text-transform:uppercase;letter-spacing:1px;">What would I shift next time?</p><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 30 - MOVE: PROVE YOURSELF -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When You Feel the Need to Prove Yourself</div><div class="move-icons-tag">&#x1F5E3; VOICE</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Notice the impulse to perform or explain.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">Old narratives about credibility are activated</li><li class="mb-li">Safety is being sought through over-delivery</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">You don&#8217;t need to earn authority in this moment. You need to embody it.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">Ask: &#8220;What do I know to be true?&#8221;</li><li class="mb-li">Speak from that place &#8212; briefly</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What are you trying to earn that you already have?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 31 - MOVE: OVER-EXPLAINING -->
+<div class="slide sl-move">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="move-top"><div class="move-scenario">When You&#8217;re Over-Explaining or Managing Reactions</div><div class="move-icons-tag">&#x1F5E3; VOICE &nbsp;&#xB7;&nbsp; &#x23F3; PACE</div></div>
+  <div class="move-body">
+    <div class="mb"><div class="mb-lbl">Pause</div><p class="mb-p">Stop mid-sentence if needed.</p></div>
+    <div class="mb"><div class="mb-lbl">Name</div><ul><li class="mb-li">You&#8217;re anticipating resistance</li><li class="mb-li">You&#8217;re smoothing discomfort instead of naming truth</li></ul></div>
+    <div class="mb"><div class="mb-lbl">Reframe</div><p class="mb-p">Clarity is more trustworthy than reassurance.</p></div>
+    <div class="mb"><div class="mb-lbl">Act</div><ul><li class="mb-li">State the point in one sentence</li><li class="mb-li">Stop</li><li class="mb-li">Let silence work</li></ul></div>
+    <div class="move-int"><div class="mi-lbl">Integration Prompt</div><div class="mi-div"></div><div class="mi-q">What discomfort are you trying to manage for others?</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 32 - INTEGRATION TITLE -->
+<div class="slide sl-part slide-dark">
+  <div class="part-main">
+    <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="opacity:0.05;">
+    <div class="part-lbl">Final Section</div><div class="part-title">Integration</div>
+    <div class="part-desc">From insight to practice &#8212; measuring orientation shift, not productivity.</div>
+    <div class="part-num" style="font-size:120px;">&#x221E;</div>
+  </div>
+  <div class="part-pat"></div>
+  </div>
+
+
+<!-- SLIDE 33 - SELF-ASSESSMENT -->
+<div class="slide sl-assess">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="assess-head"><h2>Self-Assessment</h2><p>Rate each statement 1&#8211;5 by clicking the dots. Measures orientation shift &#8212; not perfection.</p></div>
+  <div class="assess-grid">
+    <div class="ac"><div class="ac-title">Overwhelm as Signal</div>
+      <div class="ac-row"><div class="ac-text">I recognize overwhelm as information, not failure.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I pause before reacting to pressure.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I can name what feels misaligned.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+    <div class="ac"><div class="ac-title">Complexity &amp; Coherence</div>
+      <div class="ac-row"><div class="ac-text">I look for system design issues before personal blame.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I clarify ownership and structure.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I name capacity honestly.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+    <div class="ac"><div class="ac-title">Discernment in Decisions</div>
+      <div class="ac-row"><div class="ac-text">I distinguish urgency from importance.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I choose timing intentionally.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I communicate decisions clearly.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+    <div class="ac"><div class="ac-title">Presence &amp; Voice</div>
+      <div class="ac-row"><div class="ac-text">I speak from values rather than performance.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I regulate my body under pressure.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="ac-row"><div class="ac-text">I trust simplicity in my communication.</div><div class="rating" onclick="rate(this,event)"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 34 - CREATE YOUR OWN MOVE -->
+<div class="slide sl-own">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true">
+  <div class="own-head"><h2>Create Your Own Playbook Move</h2><p>Use when a new pattern appears or a familiar challenge repeats.</p></div>
+  <div class="own-sit"><div class="own-sit-lbl">Situation</div><textarea class="write-line large" placeholder="Type here..."></textarea>></div>
+  <div class="own-grid">
+    <div class="own-bl"><div class="own-lbl">Pause</div><div class="own-hint">What interrupts reactivity here?</div><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    <div class="own-bl"><div class="own-lbl">Name</div><div class="own-hint">What&#8217;s really beneath the surface?</div><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    <div class="own-bl"><div class="own-lbl">Reframe</div><div class="own-hint">A truer way to understand this?</div><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+    <div class="own-bl"><div class="own-lbl">Act</div><div class="own-hint">Smallest responsible move?</div><textarea class="write-line large" placeholder="Type here..."></textarea></div>
+  </div>
+  <div class="own-icons">
+    <span>Tag this move:</span>
+    <label class="own-check"><input type="checkbox"> &#x2696;&#xFE0F; Decision</label>
+    <label class="own-check"><input type="checkbox"> &#x1F504; Systems</label>
+    <label class="own-check"><input type="checkbox"> &#x1F5E3; Voice</label>
+    <label class="own-check"><input type="checkbox"> &#x23F3; Pace</label>
+  </div>
+</div>
+
+<!-- SLIDE 35 - CLOSING -->
+<div class="slide sl-close slide-dark">
+  <img src="images/Watermark.png" alt="" class="bg-logo" aria-hidden="true" style="opacity:0.04;">
+  <div class="close-l">
+    <div class="cl-over">Closing Reflection</div>
+    <div class="cl-quote">Overwhelm<br>does not<br>disqualify<br>you.</div>
+    <div class="cl-bar"></div>
+  </div>
+  <div class="close-r">
+    <div id="close-logo"><img src="images/image.png" alt="The Dignitas Agency"></div>
+    <div class="cr-body"><strong>It invites refinement.</strong><br><br>This playbook is not meant to be completed. It&#8217;s meant to be <strong>returned to.</strong><br><br>Influence grows when leaders slow down enough to see clearly, design systems that support reality, and speak from grounded truth.<br><br>Return to this playbook whenever clarity feels distant.</div>
+    <button class="restart-btn" onclick="goTo(0)">&#x21A9; Return to Start</button>
+    <button class="restart-btn" onclick="downloadResponses()">Download My Responses</button>
+  </div>
+</div>
+
+</div><!-- /slide-area -->
+
+<!-- BOTTOM BAR -->
+<div id="bottombar">
+  <button class="nav-btn" onclick="prevSlide()">&#x2190; Prev</button>
+  <div id="prog-wrap">
+    <div id="prog-track"><div id="prog-fill"></div></div>
+    <div id="prog-meta">
+  <span id="prog-label">
+    <input id="page-jump" type="number" min="1" value="1" onchange="jumpToPage(this.value)">
+    / <span id="total-pages">36</span>
+  </span>
+  <span id="prog-pct">3%</span>
+</div>
+  </div>
+  <button class="nav-btn" onclick="nextSlide()">Next &#x2192;</button>
+  <div id="bot-logo"><img src="images/image.png" alt="TDA"></div>
+</div>
+
+</div><!-- /pb -->
+<script>
+var cur=0;
+var slides=document.querySelectorAll('.slide');
+var links=document.querySelectorAll('.toc-link');
+var total=slides.length;
+function goTo(n){
+  slides[cur].classList.remove('active');
+  if(links[cur]) links[cur].classList.remove('active');
+
+  cur = Math.max(0, Math.min(n, total - 1));
+
+  slides[cur].classList.add('active');
+  if(links[cur]) links[cur].classList.add('active');
+
+  var pct = Math.round((cur + 1) / total * 100);
+
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+
+  /* Bottom bar starts after cover page */
+  var bottomBar = document.getElementById('bottombar');
+  if(bottomBar){
+    bottomBar.classList.toggle('hide-on-cover', cur === 0);
+  }
+
+  /* Editable page counter */
+  var pageJump = document.getElementById('page-jump');
+  if(pageJump){
+    pageJump.value = cur + 1;
+  }
+
+  var totalPages = document.getElementById('total-pages');
+  if(totalPages){
+    totalPages.textContent = total;
+  }
+
+  closeSidebar();
+}
+function nextSlide(){goTo(cur+1);}
+function prevSlide(){goTo(cur-1);}
+function jumpToPage(value){
+  var page = parseInt(value, 10);
+
+  if(isNaN(page)){
+    goTo(cur);
+    return;
+  }
+
+  page = Math.max(1, Math.min(page, total));
+  goTo(page - 1);
+}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
+function rate(el,e){var dots=el.querySelectorAll('.dot');var rect=el.getBoundingClientRect();var idx=Math.floor((e.clientX-rect.left)/rect.width*dots.length);idx=Math.max(0,Math.min(idx,dots.length-1));dots.forEach(function(d,i){d.classList.toggle('on',i<=idx);});}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prevSlide();});
+goTo(0);
+
+/* ============================================================
+   PAGE GRID MODAL WITH MINI SLIDE PREVIEWS
+============================================================ */
+
+function getSlideTitle(slide, index) {
+  var titleEl =
+    slide.querySelector('.cover-title') ||
+    slide.querySelector('.lp-title') ||
+    slide.querySelector('.part-title') ||
+    slide.querySelector('.full-title') ||
+    slide.querySelector('.move-scenario') ||
+    slide.querySelector('.icons-head h2') ||
+    slide.querySelector('.struct-bar h2') ||
+    slide.querySelector('.assess-head h2') ||
+    slide.querySelector('.own-head h2') ||
+    slide.querySelector('.cl-quote');
+
+  if (!titleEl) return 'Page ' + (index + 1);
+
+  return titleEl.textContent.replace(/\s+/g, ' ').trim().slice(0, 70);
+}
+
+function removeDuplicateIds(node) {
+  node.querySelectorAll('[id]').forEach(function(el) {
+    el.removeAttribute('id');
+  });
+}
+
+function makeSlideThumbnail(slide) {
+  var clone = slide.cloneNode(true);
+
+  removeDuplicateIds(clone);
+
+  clone.classList.add('active');
+  clone.style.display = 'flex';
+  clone.style.position = 'relative';
+  clone.style.inset = 'auto';
+  clone.style.width = '1000px';
+  clone.style.height = '562px';
+  clone.style.transform = 'scale(0.18)';
+  clone.style.transformOrigin = 'top left';
+  clone.style.animation = 'none';
+  clone.style.pointerEvents = 'none';
+
+  return clone;
+}
+
+function buildPageGrid() {
+  var grid = document.getElementById('page-grid-pages');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  var perPanel = 9;
+
+  for (var start = 0; start < total; start += perPanel) {
+    var panel = document.createElement('div');
+    panel.className = 'thumb-page';
+
+    for (var i = start; i < Math.min(start + perPanel, total); i++) {
+      var card = document.createElement('button');
+      card.className = 'page-thumb';
+      if (i === cur) card.classList.add('active');
+
+      var preview = document.createElement('div');
+      preview.className = 'thumb-preview';
+      preview.appendChild(makeSlideThumbnail(slides[i]));
+
+      var label = document.createElement('div');
+      label.className = 'thumb-label';
+      label.innerHTML =
+        '<span>' + String(i + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0') + '</span>' +
+        getSlideTitle(slides[i], i);
+
+      (function(pageIndex) {
+        card.addEventListener('click', function() {
+          goTo(pageIndex);
+          togglePageGrid(false);
+        });
+      })(i);
+
+      card.appendChild(preview);
+      card.appendChild(label);
+      panel.appendChild(card);
+    }
+
+    grid.appendChild(panel);
+  }
+}
+
+function togglePageGrid(force) {
+  var overlay = document.getElementById('page-grid-overlay');
+  if (!overlay) return;
+
+  var shouldOpen = typeof force === 'boolean'
+    ? force
+    : !overlay.classList.contains('open');
+
+  if (shouldOpen) {
+    buildPageGrid();
+    overlay.classList.add('open');
+  } else {
+    overlay.classList.remove('open');
+  }
+}
+
+function closePageGrid(event) {
+  if (event.target.id === 'page-grid-overlay') {
+    togglePageGrid(false);
+  }
+}
+
+/* Drag horizontally through page groups */
+(function enablePageGridDrag() {
+  var scroller = document.getElementById('page-grid-pages');
+  if (!scroller) return;
+
+  var isDown = false;
+  var startX = 0;
+  var startScrollLeft = 0;
+
+  scroller.addEventListener('pointerdown', function(e) {
+    isDown = true;
+    startX = e.clientX;
+    startScrollLeft = scroller.scrollLeft;
+    scroller.classList.add('dragging');
+    scroller.setPointerCapture(e.pointerId);
+  });
+
+  scroller.addEventListener('pointermove', function(e) {
+    if (!isDown) return;
+    e.preventDefault();
+
+    var walk = e.clientX - startX;
+    scroller.scrollLeft = startScrollLeft - walk;
+  });
+
+  scroller.addEventListener('pointerup', function(e) {
+    isDown = false;
+    scroller.classList.remove('dragging');
+  });
+
+  scroller.addEventListener('pointercancel', function() {
+    isDown = false;
+    scroller.classList.remove('dragging');
+  });
+})();
+function downloadResponses(){
+  var fields = document.querySelectorAll('textarea.write-line');
+  var content = 'From Overwhelm to Influence Playbook Responses\n\n';
+
+  fields.forEach(function(field, index){
+    var label = field.previousElementSibling ? field.previousElementSibling.textContent.trim() : 'Response ' + (index + 1);
+    content += label + '\n';
+    content += (field.value || '[No response]') + '\n\n';
+  });
+
+  var blob = new Blob([content], {type:'text/plain'});
+  var link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'playbook-responses.txt';
+  link.click();
+}
+</script>
+</body>
+</html>

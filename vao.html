@@ -1,0 +1,1655 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        name="description"
+        content="VA Outsourcing Company project — Brandon Rendora portfolio."
+    >
+
+    <title>VA Outsourcing Company — Brandon Rendora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================================
+           VAO PROJECT PAGE
+        ===================================================== */
+
+        .vao-hero {
+            padding: 100px 0 90px;
+        }
+
+        .vao-eyebrow,
+        .vao-label {
+            font-size: 10px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #8a8f97;
+            font-weight: 700;
+        }
+
+        .vao-title {
+            margin: 20px 0 48px;
+
+            font-size: clamp(64px, 9vw, 132px);
+            line-height: .84;
+
+            letter-spacing: -.07em;
+
+            color: #11233D;
+        }
+
+        .vao-hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+
+            gap: 70px;
+
+            border-top: 1px solid #D2CFC5;
+
+            padding-top: 30px;
+        }
+
+        .vao-lead {
+            margin: 0;
+
+            font-size: 21px;
+            line-height: 1.55;
+
+            color: #3A414C;
+        }
+
+        .vao-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .vao-meta small {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 9px;
+            letter-spacing: .13em;
+
+            text-transform: uppercase;
+
+            color: #8a8f97;
+        }
+
+        .vao-meta strong {
+            font-size: 13px;
+            line-height: 1.45;
+
+            color: #11233D;
+        }
+
+
+        /* =====================================================
+           PROJECT INTRO
+        ===================================================== */
+
+        .vao-intro {
+            padding: 100px 0;
+
+            background: #EBE8E1;
+        }
+
+        .vao-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .vao-logo-stage {
+            min-height: 460px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 45px;
+
+            background: #FFFFFF;
+
+            border: 1px solid #D2CFC5;
+        }
+
+        .vao-logo-stage img {
+            display: block;
+
+            max-width: 100%;
+            max-height: 370px;
+
+            object-fit: contain;
+        }
+
+        .vao-intro h2,
+        .vao-section-head h2 {
+            margin: 16px 0 22px;
+
+            font-size: clamp(40px, 5vw, 70px);
+            line-height: .98;
+
+            letter-spacing: -.05em;
+
+            color: #11233D;
+        }
+
+        .vao-intro p,
+        .vao-section-head p {
+            margin: 0;
+
+            font-size: 17px;
+            line-height: 1.75;
+
+            color: #3A414C;
+        }
+
+
+        /* =====================================================
+           ARCHIVE
+        ===================================================== */
+
+        .vao-archive {
+            padding: 110px 0;
+        }
+
+        .vao-section-head {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+
+            gap: 55px;
+
+            margin-bottom: 65px;
+        }
+
+
+        /* =====================================================
+           CATEGORY
+        ===================================================== */
+
+        .vao-category {
+            margin-bottom: 90px;
+        }
+
+        .vao-category-head {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: end;
+
+            gap: 25px;
+
+            padding-bottom: 15px;
+            margin-bottom: 28px;
+
+            border-bottom: 1px solid #D2CFC5;
+        }
+
+        .vao-category-head h3 {
+            margin: 0;
+
+            font-size: 30px;
+
+            letter-spacing: -.03em;
+
+            color: #11233D;
+        }
+
+        .vao-category-head span {
+            font-size: 9px;
+
+            letter-spacing: .12em;
+
+            text-transform: uppercase;
+
+            color: #8a8f97;
+        }
+
+
+        /* =====================================================
+           ARCHIVE GALLERY
+        ===================================================== */
+
+        .vao-gallery {
+            columns: 3;
+
+            column-gap: 24px;
+        }
+
+        .vao-card {
+            break-inside: avoid;
+
+            margin: 0 0 34px;
+        }
+
+        .vao-media {
+            overflow: hidden;
+
+            background: #FFFFFF;
+
+            border: 1px solid #D2CFC5;
+        }
+
+        .vao-media img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            transition: transform .35s ease;
+        }
+
+        .vao-card:hover img {
+            transform: scale(1.015);
+        }
+
+        .vao-caption {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 9px;
+            padding-top: 10px;
+
+            border-top: 1px solid #D2CFC5;
+
+            font-size: 9px;
+
+            letter-spacing: .11em;
+
+            text-transform: uppercase;
+
+            color: #767c84;
+        }
+
+
+        /* =====================================================
+           RESPONSIBILITIES
+        ===================================================== */
+
+        .vao-role {
+            padding: 90px 0;
+
+            background: #11233D;
+
+            color: #FFFFFF;
+        }
+
+        .vao-role-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 45px;
+        }
+
+        .vao-role span {
+            font-size: 10px;
+
+            color: #9ea9b8;
+        }
+
+        .vao-role h3 {
+            margin: 14px 0;
+
+            font-size: 27px;
+        }
+
+        .vao-role p {
+            margin: 0;
+
+            line-height: 1.7;
+
+            color: #d3dae3;
+        }
+
+
+        /* =====================================================
+           NEXT WORK
+        ===================================================== */
+
+        .vao-next {
+            padding: 70px 0;
+        }
+
+        .vao-next-inner {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .vao-next-logo {
+            width: 150px;
+        }
+
+        .vao-next-btn {
+            padding: 18px 26px;
+
+            border: 1px solid #11233D;
+
+            border-radius: 999px;
+
+            font-size: 11px;
+
+            letter-spacing: .12em;
+
+            transition: .3s ease;
+        }
+
+        .vao-next-btn:hover {
+            background: #D15600;
+
+            color: #FFFFFF;
+
+            border-color: #D15600;
+
+            transform: scale(1.03);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .vao-hero-grid,
+            .vao-intro-grid,
+            .vao-section-head {
+                grid-template-columns: 1fr;
+            }
+
+            .vao-gallery {
+                columns: 2;
+            }
+
+            .vao-role-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .vao-title {
+                font-size: 58px;
+            }
+
+            .vao-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .vao-gallery {
+                columns: 1;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="container navbar">
+
+        <a
+            class="logo-link"
+            href="index.html"
+        >
+            <img
+                class="brand-logo"
+                src="LOGOBRNDN.png"
+                alt="Brandon logo"
+            >
+        </a>
+
+
+        <nav class="navlinks">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a
+                class="active"
+                href="work.html"
+            >
+                Work
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="socials">
+
+
+            <!-- FACEBOOK -->
+
+            <a
+                href="https://www.facebook.com/Brndnrndr"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.4c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.7-4.6 4.7v2.5H6.6V13h3.1v9h3.8z"
+                    />
+
+                </svg>
+
+            </a>
+
+
+            <!-- INSTAGRAM -->
+
+            <a
+                href="https://www.instagram.com/modd.esigns/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2zm5.2-3.5a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"
+                    />
+
+                </svg>
+
+            </a>
+
+
+            <!-- LINKEDIN -->
+
+            <a
+                href="https://www.linkedin.com/in/brandon-rendora-91628b212/"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M4.7 3.5A2.2 2.2 0 1 1 4.7 8a2.2 2.2 0 0 1 0-4.5zM2.8 9.5h3.8V21H2.8V9.5zm6.1 0h3.6v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H8.9V9.5z"
+                    />
+
+                </svg>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="vao-hero">
+
+    <div class="container">
+
+        <div class="vao-eyebrow">
+            Selected Work / Social Media & Lead Generation
+        </div>
+
+
+        <h1 class="vao-title">
+
+            VA OUTSOURCING
+            <br>
+
+            COMPANY
+
+        </h1>
+
+
+        <div class="vao-hero-grid">
+
+
+            <p class="vao-lead">
+
+                A collection of social media, recruitment,
+                real-estate and brand creatives created while
+                supporting VA Outsourcing Company / MyDesk
+                Virtual Office.
+
+                My work combined lead generation with hands-on
+                creative and administrative support.
+
+            </p>
+
+
+            <div class="vao-meta">
+
+
+                <div>
+
+                    <small>
+                        Role
+                    </small>
+
+                    <strong>
+                        Virtual Assistant —
+                        Real Estate Lead Generation
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Period
+                    </small>
+
+                    <strong>
+                        December 2023 —
+                        February 2024
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Responsibilities
+                    </small>
+
+                    <strong>
+                        Lead Generation · Social Media ·
+                        Flyers · Appointment Setting
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Location
+                    </small>
+
+                    <strong>
+                        Baguio City,
+                        Philippines
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROJECT INTRO
+===================================================== -->
+
+<section class="vao-intro">
+
+    <div class="container vao-intro-grid">
+
+
+        <div class="vao-logo-stage">
+
+            <img
+                src="vaologo.png"
+                alt="VA Outsourcing Company"
+            >
+
+        </div>
+
+
+        <div>
+
+            <span class="vao-label">
+                01 — The Project
+            </span>
+
+
+            <h2>
+
+                Creative support built around
+                visibility and lead generation.
+
+            </h2>
+
+
+            <p>
+
+                I supported the company through
+                real-estate prospecting, agent and broker
+                research, telemarketing and appointment
+                setting, while also producing social media
+                graphics, hiring posts, promotional flyers
+                and brand materials.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROJECT ARCHIVE
+===================================================== -->
+
+<section class="vao-archive">
+
+    <div class="container">
+
+
+        <div class="vao-section-head">
+
+
+            <span class="vao-label">
+                02 — Project Archive
+            </span>
+
+
+            <div>
+
+                <h2>
+                    Selected creative work.
+                </h2>
+
+
+                <p>
+
+                    A visual archive of the materials produced
+                    for the company across branding,
+                    recruitment, real estate and social media.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ============================================
+             BRAND DIRECTION
+        ============================================= -->
+
+        <div class="vao-category">
+
+
+            <div class="vao-category-head">
+
+                <h3>
+                    Brand Direction
+                </h3>
+
+                <span>
+                    Identity & Profile Assets
+                </span>
+
+            </div>
+
+
+            <div class="vao-gallery">
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+				  src="engagement 1.jpg"
+                            
+                            alt="VA Outsourcing Company Brand Direction"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>01</span>
+
+                        <span>
+                            Brand Direction
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="VApresent.jpg"
+                            alt="VA Outsourcing Company Brand Identity"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>02</span>
+
+                        <span>
+                            Brand Identity
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="VATARP.png"
+                            alt="VA Outsourcing Company Brand Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>03</span>
+
+                        <span>
+                            Brand Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="VAOassistant.png"
+                            alt="VA Outsourcing Company Profile"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>04</span>
+
+                        <span>
+                            Social Profile
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="Panagbenga.png"
+                            alt="VA Outsourcing Company Seasonal Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>05</span>
+
+                        <span>
+                            Seasonal Content
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================================
+             RECRUITMENT
+        ============================================= -->
+
+        <div class="vao-category">
+
+
+            <div class="vao-category-head">
+
+                <h3>
+                    Recruitment Campaigns
+                </h3>
+
+                <span>
+                    Hiring & Staffing
+                </span>
+
+            </div>
+
+
+            <div class="vao-gallery">
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="SOCIAL MEDIA MANAGER PORTFOLIO_20240210_185023_0000.pdf (6).png"
+                            alt="VA Outsourcing Recruitment Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>06</span>
+
+                        <span>
+                            Recruitment Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="wdawdwa.png"
+                            alt="VA Outsourcing Hiring Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>07</span>
+
+                        <span>
+                            Hiring Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="SOCIAL MEDIA MANAGER PORTFOLIO_20240210_185023_0000.pdf (10).png"
+                            alt="VA Outsourcing Hiring Post"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>08</span>
+
+                        <span>
+                            Hiring Post
+                        </span>
+
+                    </figcaption>
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="fluyer3.png"
+                            alt="VA Outsourcing Hiring Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>10</span>
+
+                        <span>
+                            Hiring Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================================
+             REAL ESTATE
+        ============================================= -->
+
+        <div class="vao-category">
+
+
+            <div class="vao-category-head">
+
+                <h3>
+                    Real Estate Promotion
+                </h3>
+
+                <span>
+                    Property Marketing
+                </span>
+
+            </div>
+
+
+            <div class="vao-gallery">
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="SOCIAL MEDIA MANAGER PORTFOLIO_20240210_185023_0000.pdf (12)(1).png"
+                            alt="Real Estate Promotion"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>11</span>
+
+                        <span>
+                            Real Estate Campaign
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="flyer2.png"
+                            alt="Property Flyer"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>12</span>
+
+                        <span>
+                            Property Flyer
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="flyer1.png"
+                            alt="Property Promotion"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>13</span>
+
+                        <span>
+                            Property Promotion
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================================
+             SOCIAL MEDIA
+        ============================================= -->
+
+        <div class="vao-category">
+
+
+            <div class="vao-category-head">
+
+                <h3>
+                    Social Media & Engagement
+                </h3>
+
+                <span>
+                    Content Support
+                </span>
+
+            </div>
+
+
+            <div class="vao-gallery">
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="mobilessmm.png"
+                            alt="VA Social Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>14</span>
+
+                        <span>
+                            Social Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="Panagbenga.png"
+                            alt="VA Seasonal Content"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>15</span>
+
+                        <span>
+                            Seasonal Content
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="you!.png"
+                            alt="VA Engagement Post"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>16</span>
+
+                        <span>
+                            Engagement Post
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="What niche.png"
+                            alt="VA Social Media Content"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>17</span>
+
+                        <span>
+                            Social Media Content
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="Social media asdasd.png"
+                            alt="VA Social Media Guide"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>18</span>
+
+                        <span>
+                            Social Media Guide
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="Purple Pink Professional Gradient Virtual Assistant Business Carousel Instagram Post (3).png"
+                            alt="VA Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>19</span>
+
+                        <span>
+                            VA Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+
+                <figure class="vao-card">
+
+                    <div class="vao-media">
+
+                        <img
+                            src="testimonial.jpg"
+                            alt="VA Campaign Creative"
+                        >
+
+                    </div>
+
+                    <figcaption class="vao-caption">
+
+                        <span>20</span>
+
+                        <span>
+                            Campaign Creative
+                        </span>
+
+                    </figcaption>
+
+                </figure>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ROLE / RESPONSIBILITIES
+===================================================== -->
+
+<section class="vao-role">
+
+    <div class="container vao-role-grid">
+
+
+        <div>
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Lead Generation
+            </h3>
+
+            <p>
+
+                Supported outbound prospecting,
+                agent and broker research,
+                telemarketing and appointment setting
+                for real-estate and VA-related leads.
+
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Social Media
+            </h3>
+
+            <p>
+
+                Created branded graphics for recruitment,
+                engagement, awareness and promotional
+                content across social platforms.
+
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Creative Support
+            </h3>
+
+            <p>
+
+                Produced flyers, profile graphics,
+                campaign materials and property
+                promotions designed around specific
+                audiences and offers.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MORE WORK
+===================================================== -->
+
+<section class="vao-next">
+
+    <div class="container vao-next-inner">
+
+
+        <img
+            class="vao-next-logo"
+            src="LOGOBRNDN.png"
+            alt="Brandon Rendora"
+        >
+
+
+        <a
+            class="vao-next-btn"
+            href="work.html"
+        >
+
+            SEE MORE OF MY WORK
+            ↗
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+
+        <div class="footer-head">
+
+
+            <img
+                class="footer-brand"
+                src="LOGOBRNDN.png"
+                alt="Brandon logo"
+            >
+
+
+            <img
+                class="footer-avatar"
+                src="Profile-Brandon.png"
+                alt="Brandon portrait"
+            >
+
+
+            <h2 class="footer-title">
+
+                LET’S BE A PARTNER
+
+            </h2>
+
+
+        </div>
+
+
+        <div class="footer-rule"></div>
+
+
+        <div class="footer-pills">
+
+
+            <a
+                class="pill"
+                href="mailto:brndnjyrendora@gmail.com"
+            >
+
+                brndnjyrendora@gmail.com
+
+            </a>
+
+
+            <a
+                class="pill"
+                href="tel:+639702842183"
+            >
+
+                +63 9702842183
+
+            </a>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+
+            <div>
+
+                <div class="meta-label">
+                    Version
+                </div>
+
+                <div class="meta-value">
+                    Brandon Rendora @ 2026
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="meta-label">
+                    Local Time
+                </div>
+
+                <div class="meta-value local-time"></div>
+
+            </div>
+
+
+            <div class="socials footer-socials">
+
+
+                <a
+                    href="https://www.facebook.com/Brndnrndr"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Facebook"
+                >
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.4c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.7-4.6 4.7v2.5H6.6V13h3.1v9h3.8z"
+                        />
+
+                    </svg>
+
+                </a>
+
+
+                <a
+                    href="https://www.instagram.com/modd.esigns/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Instagram"
+                >
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2zm5.2-3.5a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"
+                        />
+
+                    </svg>
+
+                </a>
+
+
+                <a
+                    href="https://www.linkedin.com/in/brandon-rendora-91628b212/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="LinkedIn"
+                >
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path
+                            d="M4.7 3.5A2.2 2.2 0 1 1 4.7 8a2.2 2.2 0 0 1 0-4.5zM2.8 9.5h3.8V21H2.8V9.5zm6.1 0h3.6v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H8.9V9.5z"
+                        />
+
+                    </svg>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+    function updateVAOTime() {
+
+        const element =
+            document.querySelector(".local-time");
+
+
+        if (!element) {
+            return;
+        }
+
+
+        const now =
+            new Date();
+
+
+        const time =
+            new Intl.DateTimeFormat(
+                "en-US",
+                {
+                    timeZone: "Asia/Manila",
+
+                    hour: "2-digit",
+
+                    minute: "2-digit",
+
+                    second: "2-digit",
+
+                    hour12: true
+                }
+            ).format(now);
+
+
+        element.textContent =
+            time + " GMT+8";
+
+    }
+
+
+    updateVAOTime();
+
+
+    setInterval(
+        updateVAOTime,
+        1000
+    );
+
+</script>
+
+
+</body>
+</html>

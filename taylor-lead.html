@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="The Taylor LEAD Foundation project case study — Brandon Rendora.">
+    <title>The Taylor LEAD Foundation — Brandon Rendora</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+        :root{
+            --bg:#FAF7F2;
+            --ink:#11233D;
+            --text:#3A414C;
+            --line:#D2CFC5;
+            --accent:#D15600;
+            --sand:#EBE8E1;
+            --white:#FFFFFF;
+        }
+
+        *{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:"Manrope",Arial,sans-serif;
+        }
+
+        a{color:inherit;text-decoration:none}
+        img,video{max-width:100%}
+        .container{width:min(1520px,calc(100% - 9vw));margin:auto}
+
+        /* HEADER */
+        .site-header{
+            position:relative;
+            z-index:20;
+            border-bottom:1px solid rgba(210,207,197,.55);
+            background:rgba(250,247,242,.94);
+        }
+        .navbar{
+            height:92px;
+            display:flex;
+            align-items:center;
+            gap:45px;
+        }
+        .brand-logo{width:142px;display:block}
+        .navlinks{display:flex;gap:31px;font-weight:500}
+        .navlinks a{position:relative;padding:10px 0}
+        .navlinks a.active:after,
+        .navlinks a:hover:after{
+            content:"";
+            position:absolute;
+            left:0;right:0;bottom:2px;
+            height:1px;background:var(--ink);
+        }
+        .socials{margin-left:auto;display:flex;gap:18px}
+        .socials svg{width:21px;height:21px;fill:var(--ink)}
+
+        /* HERO */
+        .case-hero{padding:115px 0 88px}
+        .eyebrow,.section-label{
+            font-size:11px;
+            font-weight:800;
+            letter-spacing:.17em;
+            text-transform:uppercase;
+            color:#858A92;
+        }
+        .case-hero-grid{
+            margin-top:56px;
+            display:grid;
+            grid-template-columns:1.45fr .72fr;
+            gap:100px;
+        }
+        .case-heading .type{
+            margin:0 0 20px;
+            color:var(--accent);
+            font-size:13px;
+            font-weight:800;
+            letter-spacing:.12em;
+        }
+        .case-heading h1{
+            margin:0;
+            color:var(--ink);
+            font-size:clamp(66px,8vw,136px);
+            line-height:.88;
+            letter-spacing:-.07em;
+        }
+        .case-heading .role{
+            margin:35px 0 0;
+            font-size:clamp(21px,2vw,31px);
+            color:var(--text);
+        }
+        .case-details{align-self:end}
+        .case-detail{
+            display:grid;
+            grid-template-columns:120px 1fr;
+            gap:24px;
+            padding:18px 0;
+            border-bottom:1px solid var(--line);
+        }
+        .case-detail span{
+            font-size:10px;font-weight:800;letter-spacing:.13em;color:#888D94
+        }
+        .case-detail p{margin:0;color:var(--ink);font-weight:650}
+        .responsibilities{
+            display:grid;
+            grid-template-columns:220px 1fr;
+            gap:50px;
+            border-top:1px solid var(--line);
+            margin-top:92px;
+            padding-top:32px;
+        }
+        .responsibilities > span{font-size:10px;font-weight:800;letter-spacing:.13em;color:#888D94}
+        .tags{display:flex;flex-wrap:wrap;gap:10px}
+        .tags span{
+            border:1px solid var(--line);
+            border-radius:999px;
+            padding:10px 16px;
+            color:var(--ink);
+            background:rgba(255,255,255,.25);
+        }
+
+        /* OVERVIEW */
+        .overview{padding:120px 0 145px;border-top:1px solid var(--line)}
+        .overview-grid{display:grid;grid-template-columns:1.18fr .75fr;gap:clamp(70px,9vw,165px)}
+        .overview h2{
+            margin:28px 0 0;
+            color:var(--ink);
+            font-size:clamp(42px,5vw,78px);
+            line-height:1;
+            letter-spacing:-.05em;
+        }
+        .overview-copy{padding-top:42px}
+        .overview-copy p{font-size:18px;line-height:1.75;margin:0 0 23px}
+
+        /* PROGRAM INTRO */
+        .program-section{padding:120px 0}
+        .program-section.alt{background:var(--sand)}
+        .program-head{
+            display:grid;
+            grid-template-columns:.55fr 1.4fr;
+            gap:60px;
+            align-items:end;
+            margin-bottom:75px;
+        }
+        .program-index{
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.15em;
+            color:var(--accent);
+        }
+        .program-head h2{
+            color:var(--ink);
+            margin:0;
+            font-size:clamp(48px,6vw,96px);
+            line-height:.92;
+            letter-spacing:-.055em;
+        }
+        .program-head p{
+            grid-column:2;
+            margin:0;
+            max-width:850px;
+            font-size:18px;
+            line-height:1.7;
+        }
+
+        /* ARCHIVE GRID */
+        .archive{
+            display:grid;
+            grid-template-columns:repeat(12,1fr);
+            gap:28px 22px;
+            align-items:start;
+        }
+        .work{margin:0 0 52px}
+        .work:nth-child(6n+1){grid-column:span 7}
+        .work:nth-child(6n+2){grid-column:9/span 4;margin-top:105px}
+        .work:nth-child(6n+3){grid-column:2/span 4}
+        .work:nth-child(6n+4){grid-column:7/span 6;margin-top:80px}
+        .work:nth-child(6n+5){grid-column:span 5}
+        .work:nth-child(6n+6){grid-column:6/span 7;margin-top:85px}
+
+        .media{
+            background:#fff;
+            overflow:hidden;
+            border:1px solid rgba(210,207,197,.8);
+        }
+        .media img,.media video{
+            display:block;
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:transform .6s cubic-bezier(.2,.8,.2,1);
+        }
+        .work:hover .media img,.work:hover .media video{transform:scale(1.018)}
+        .landscape .media{aspect-ratio:16/10}
+        .square .media{aspect-ratio:1/1}
+        .portrait .media{aspect-ratio:4/5}
+        .tall .media{aspect-ratio:9/16}
+        .video .media{aspect-ratio:16/9;background:#101010}
+        .video.portrait-video .media{aspect-ratio:4/5}
+        .caption{
+            display:flex;
+            justify-content:space-between;
+            gap:24px;
+            padding-top:11px;
+            margin-top:11px;
+            border-top:1px solid var(--line);
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:.12em;
+            color:#656A72;
+            text-transform:uppercase;
+        }
+
+        /* DOCUMENT FEATURE */
+        .document-feature{
+            margin-top:80px;
+            padding:42px 0 0;
+            border-top:1px solid var(--line);
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:50px;
+            align-items:center;
+        }
+        .document-feature h3{
+            margin:15px 0 18px;
+            color:var(--ink);
+            font-size:clamp(32px,4vw,56px);
+            line-height:1;
+            letter-spacing:-.04em;
+        }
+        .document-feature p{line-height:1.7;max-width:650px}
+        .doc-card{
+            background:var(--white);
+            padding:38px;
+            border:1px solid var(--line);
+        }
+        .doc-button{
+            display:inline-flex;
+            gap:24px;
+            align-items:center;
+            margin-top:20px;
+            border:1px solid var(--accent);
+            color:var(--accent);
+            border-radius:999px;
+            padding:17px 24px;
+            font-weight:800;
+            font-size:13px;
+            transition:.3s ease;
+        }
+        .doc-button:hover{background:var(--accent);color:#fff;transform:scale(1.025)}
+
+        /* NEXT */
+        .case-next{padding:115px 0;border-top:1px solid var(--line)}
+        .case-next-inner{display:flex;align-items:center;justify-content:space-between;gap:50px}
+        .case-next-logo{width:min(270px,28vw)}
+        .case-next-button{
+            display:inline-flex;align-items:center;gap:28px;
+            border:1px solid var(--accent);
+            color:var(--accent);
+            padding:22px 30px;border-radius:999px;
+            font-weight:800;transition:.3s ease;
+        }
+        .case-next-button:hover{background:var(--accent);color:#fff;transform:scale(1.03)}
+
+       /* =========================================================
+   FOOTER — FIXED ALIGNMENT
+========================================================= */
+
+.site-footer {
+    padding: 110px 0 38px;
+    background: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   LOGO + PROFILE + HEADING
+--------------------------------------------------------- */
+
+.footer-head {
+    position: relative;
+
+    /* Creates the space where the profile sits */
+    padding-left: 210px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+/* BRANDON LOGO */
+
+.footer-brand {
+    width: 245px;
+
+    display: block;
+
+    margin: 0 0 28px;
+
+    transform-origin: left bottom;
+
+    transition: transform .35s ease;
+}
+
+.footer-brand:hover {
+    transform: rotate(3deg);
+}
+
+
+/* LET'S BE A PARTNER */
+
+.footer-title {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-size: clamp(52px, 6vw, 100px);
+
+    font-weight: 500;
+
+    letter-spacing: -.05em;
+
+    line-height: .95;
+}
+
+
+/* PROFILE PHOTO */
+
+.footer-avatar {
+    position: absolute;
+
+    /* stays inside the container now */
+    left: 0;
+
+    /* positions it between logo + heading area */
+    top: 115px;
+
+    width: 145px;
+    height: 145px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    /* IMPORTANT:
+       remove the old translateX(-42%)
+    */
+    transform: none;
+}
+
+
+/* ---------------------------------------------------------
+   DIVIDER
+--------------------------------------------------------- */
+
+.footer-rule {
+    height: 1px;
+
+    background: var(--line);
+
+    /* aligns with logo + heading */
+    margin:
+
+        42px
+        0
+        28px
+        210px;
+}
+
+
+/* ---------------------------------------------------------
+   EMAIL + PHONE
+--------------------------------------------------------- */
+
+.footer-pills {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 50px;
+
+    /* same left alignment as heading */
+    padding-left: 210px;
+}
+
+
+.pill {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 108px;
+
+    padding: 24px 38px;
+
+    background: var(--accent);
+
+    color: #ffffff;
+
+    border-radius: 999px;
+
+    font-size: clamp(18px, 2vw, 31px);
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.pill:hover {
+    transform: scale(1.025);
+}
+
+
+/* ---------------------------------------------------------
+   VERSION / LOCAL TIME / SOCIALS
+--------------------------------------------------------- */
+
+.footer-bottom {
+    display: grid;
+
+    /*
+       Version = far left
+       Local Time = aligned around profile/heading area
+       Social icons = far right
+    */
+    grid-template-columns:
+        210px
+        270px
+        1fr;
+
+    gap: 55px;
+
+    align-items: end;
+
+    margin-top: 72px;
+}
+
+
+.meta-label {
+    margin-bottom: 12px;
+
+    font-size: 13px;
+
+    color: #777777;
+}
+
+
+.meta-value {
+    color: var(--ink);
+
+    line-height: 1.45;
+}
+
+
+.footer-socials {
+    justify-self: end;
+
+    margin-left: 0;
+}
+
+        @media(max-width:1000px){
+            .case-hero-grid,.overview-grid{grid-template-columns:1fr;gap:45px}
+            .responsibilities{grid-template-columns:1fr;gap:20px}
+            .program-head{grid-template-columns:1fr}
+            .program-head p{grid-column:1}
+            .archive{grid-template-columns:repeat(2,1fr)}
+            .archive .work,.archive .work:nth-child(n){grid-column:auto;margin-top:0}
+            .document-feature{grid-template-columns:1fr}
+            .footer-avatar{display:none}
+            .footer-rule{margin-left:0}
+            .footer-pills{padding-left:0}
+        }
+
+        @media(max-width:680px){
+            .navbar{height:auto;padding:20px 0;flex-wrap:wrap}
+            .navlinks{order:3;width:100%;justify-content:space-between;gap:10px}
+            .socials{margin-left:auto}
+            .case-hero{padding-top:70px}
+            .case-heading h1{font-size:55px}
+            .case-detail{grid-template-columns:95px 1fr}
+            .archive{display:block}
+            .archive .work{margin-bottom:55px}
+            .case-next-inner{flex-direction:column;align-items:flex-start}
+            .footer-pills{grid-template-columns:1fr}
+            .footer-bottom{grid-template-columns:1fr 1fr}
+            .footer-socials{grid-column:1/-1;justify-self:start;margin-left:0}
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container navbar">
+        <a class="logo-link" href="index.html">
+            <img class="brand-logo" src="LOGOBRNDN.png" alt="Brandon logo">
+        </a>
+
+        <nav class="navlinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a class="active" href="work.html">Work</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="socials">
+            <a href="https://www.facebook.com/Brndnrndr" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.4c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.7-4.6 4.7v2.5H6.6V13h3.1v9h3.8z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/modd.esigns/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2zm5.2-3.5a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/brandon-rendora-91628b212/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M4.7 3.5A2.2 2.2 0 1 1 4.7 8a2.2 2.2 0 0 1 0-4.5zM2.8 9.5h3.8V21H2.8V9.5zm6.1 0h3.6v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H8.9V9.5z"/></svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="case-hero">
+        <div class="container">
+            <div class="eyebrow">02 / SELECTED WORK</div>
+
+            <div class="case-hero-grid">
+                <div class="case-heading">
+                    <p class="type">FOUNDATION / SPORTS / LEADERSHIP DEVELOPMENT</p>
+                    <h1>THE TAYLOR<br>LEAD FOUNDATION</h1>
+                    <p class="role">Project Coordinator — Project-Based Creative & Program Support</p>
+                </div>
+
+                <div class="case-details">
+                    <div class="case-detail"><span>ROLE</span><p>Project Coordinator</p></div>
+                    <div class="case-detail"><span>FOCUS</span><p>Graphics, Program Materials & Content Support</p></div>
+                    <div class="case-detail"><span>LOCATION</span><p>Idaho, USA</p></div>
+                    <div class="case-detail"><span>ENGAGEMENT</span><p>Project-Based / As Needed</p></div>
+                    <div class="case-detail"><span>RELATIONSHIP</span><p>Supporting work connected with The Dignitas Agency</p></div>
+                </div>
+            </div>
+
+            <div class="responsibilities">
+                <span>RESPONSIBILITIES</span>
+                <div class="tags">
+                    <span>Graphic Design</span>
+                    <span>Program Collateral</span>
+                    <span>Campaign Assets</span>
+                    <span>Scholarship Materials</span>
+                    <span>Recruitment Graphics</span>
+                    <span>Presentation & One-Pager Design</span>
+                    <span>Video Assets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="overview">
+        <div class="container overview-grid">
+            <div>
+                <span class="section-label">ABOUT THE WORK</span>
+                <h2>Project-based creative support across foundation programs.</h2>
+            </div>
+
+            <div class="overview-copy">
+                <p>
+                    The Taylor LEAD Foundation is the larger foundation connected to my client Angela Taylor.
+                    My involvement here is lighter and more project-specific than my work with The Dignitas Agency.
+                </p>
+
+                <p>
+                    I support selected initiatives when graphics, program materials, recruitment assets,
+                    scholarship collateral, or campaign content are needed. The work below is organized into
+                    two areas: Foundation & Staff Programs, and Game On! Sports 4 Girls.
+                </p>
+
+                <p>
+                    This page is intentionally more focused than the Dignitas case study: it highlights the
+                    specific creative outputs I contributed instead of presenting the Foundation as a full-time client engagement.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORY 1 -->
+    <section class="program-section">
+        <div class="container">
+
+            <div class="program-head">
+                <div class="program-index">01 / FOUNDATION & STAFF</div>
+
+                <h2>Foundation Programs<br>& Internal Materials</h2>
+
+                <p>
+                    Selected work supporting The Taylor LEAD Foundation itself, including the iWIN Networking Collective,
+                    impact-vision materials, scholarship review collateral, recruiting graphics, and short-form video assets.
+                </p>
+            </div>
+
+            <div class="archive">
+
+                <article class="work landscape">
+                    <div class="media">
+                        <img src="assets/taylor-lead/iwin-networking-01.png" alt="iWIN Networking Collective campaign flyer">
+                    </div>
+                    <div class="caption"><span>01</span><span>iWIN Networking Collective</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/iwin-networking-02.png" alt="iWIN Networking Collective flyer">
+                    </div>
+                    <div class="caption"><span>02</span><span>Program Campaign Graphic</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/impact-vision-01.png" alt="Taylor LEAD 2026 impact vision">
+                    </div>
+                    <div class="caption"><span>03</span><span>2026 Impact Vision</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/impact-vision-02.png" alt="Taylor LEAD impact model">
+                    </div>
+                    <div class="caption"><span>04</span><span>Impact Model / iWIN Journey</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/impact-commitments-01.png" alt="How We Use Funds graphic">
+                    </div>
+                    <div class="caption"><span>05</span><span>How We Use Funds</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/impact-commitments-02.png" alt="2026 2027 impact commitments">
+                    </div>
+                    <div class="caption"><span>06</span><span>Impact Commitments</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/impact-commitments-03.png" alt="Where Your Dollars Go graphic">
+                    </div>
+                    <div class="caption"><span>07</span><span>Fund Allocation One-Pager</span></div>
+                </article>
+
+                <article class="work portrait">
+                    <div class="media">
+                        <img src="assets/taylor-lead/scholarship-reviewer-map.png" alt="Scholarship reviewer process map and rubric">
+                    </div>
+                    <div class="caption"><span>08</span><span>Scholarship Reviewer Process Map</span></div>
+                </article>
+
+                <article class="work video">
+                    <div class="media">
+                        <video src="assets/taylor-lead/foundation-intro.mp4" autoplay muted loop playsinline ></video>
+                    </div>
+                    <div class="caption"><span>09</span><span>Foundation Intro Video</span></div>
+                </article>
+
+                <article class="work video">
+                    <div class="media">
+                        <video src="assets/taylor-lead/scholarship-video-compressed.mp4" autoplay muted loop playsinline></video>
+                    </div>
+                    <div class="caption"><span>10</span><span>Scholarship Program Video</span></div>
+                </article>
+
+                <article class="work video">
+                    <div class="media">
+                        <video src="assets/taylor-lead/foundation-logo-reveal.mp4" autoplay muted loop playsinline ></video>
+                    </div>
+                    <div class="caption"><span>11</span><span>Logo / Motion Asset</span></div>
+                </article>
+
+            </div>
+
+            <div class="document-feature">
+                <div>
+                    <span class="section-label">SCHOLARSHIP OPERATIONS</span>
+                    <h3>Scholarship Committee Playbook</h3>
+                    <p>
+                        A long-form committee resource for the Alice & Charles Taylor Scholar-Athlete LEAD Scholarship,
+                        covering the review process, reviewer guidance, scholarship structure, committee expectations,
+                        and supporting resources.
+                    </p>
+
+                    <a class="doc-button" href="assets/taylor-lead/scholarship-committee-playbook.pdf" target="_blank" rel="noopener">
+                        VIEW PLAYBOOK PDF <span>↗</span>
+                    </a>
+                </div>
+
+                <div class="doc-card">
+                    <img src="assets/taylor-lead/scholarship-reviewer-map.png" alt="Phase I reviewer process map">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CATEGORY 2 -->
+    <section class="program-section alt">
+        <div class="container">
+
+            <div class="program-head">
+                <div class="program-index">02 / GAME ON!</div>
+
+                <h2>Game On! Sports<br>4 Girls — Boise</h2>
+
+                <p>
+                    Visual assets supporting the sports-program side of the Foundation. These pieces use
+                    youth-sports photography, branded overlays, and program marks for recruitment, social,
+                    and supporting campaign materials.
+                </p>
+            </div>
+
+            <div class="archive">
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-01.png" alt="Game On Sports 4 Girls track graphic">
+                    </div>
+                    <div class="caption"><span>01</span><span>Sports Program Graphic</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-02.png" alt="Game On Sports 4 Girls soccer training graphic">
+                    </div>
+                    <div class="caption"><span>02</span><span>Program Social Asset</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-03.png" alt="Game On Sports 4 Girls track athletes graphic">
+                    </div>
+                    <div class="caption"><span>03</span><span>Youth Sports Content</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-04.png" alt="Game On Sports 4 Girls lacrosse graphic">
+                    </div>
+                    <div class="caption"><span>04</span><span>Recruitment Visual</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-05.png" alt="Game On Sports 4 Girls track graphic">
+                    </div>
+                    <div class="caption"><span>05</span><span>Program Campaign Asset</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-06.png" alt="Game On Sports 4 Girls youth athletes">
+                    </div>
+                    <div class="caption"><span>06</span><span>Youth Sports Campaign</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-07.png" alt="Game On Sports 4 Girls soccer ball graphic">
+                    </div>
+                    <div class="caption"><span>07</span><span>Cover / Program Asset</span></div>
+                </article>
+
+                <article class="work tall">
+                    <div class="media">
+                        <img src="assets/taylor-lead/gameon-08.png" alt="Game On Sports 4 Girls youth athlete graphic">
+                    </div>
+                    <div class="caption"><span>08</span><span>Marketing & Social Asset</span></div>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEXT -->
+    <section class="case-next">
+        <div class="container case-next-inner">
+            <img class="case-next-logo" src="LOGOBRNDN.png" alt="Brandon Rendora">
+            <a class="case-next-button" href="work.html">
+                SEE MORE OF MY WORK <span>↗</span>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+  <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-head">
+
+                <img
+                    class="footer-brand"
+                    src="LOGOBRNDN.png"
+                    alt="Brandon logo"
+                >
+
+                <img
+                    class="footer-avatar"
+                    src="Profile-Brandon.png"
+                    alt="Brandon portrait"
+                >
+
+                <h2 class="footer-title">
+                    LET’S BE A PARTNER
+                </h2>
+
+            </div>
+
+
+            <div class="footer-rule"></div>
+
+
+            <div class="footer-pills">
+
+                <a
+                    class="pill"
+                    href="mailto:brndnjyrendora@gmail.com"
+                >
+                    brndnjyrendora@gmail.com
+                </a>
+
+                <a
+                    class="pill"
+                    href="tel:+639702842183"
+                >
+                    +63 9702842183
+                </a>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+
+                <!-- VERSION -->
+
+                <div>
+
+                    <div class="meta-label">
+                        Version
+                    </div>
+
+                    <div class="meta-value">
+                        Brandon Rendora @ 2026
+                    </div>
+
+                </div>
+
+
+                <!-- LOCAL TIME -->
+
+                <div>
+
+                    <div class="meta-label">
+                        Local Time
+                    </div>
+
+                    <div class="meta-value local-time"></div>
+
+                </div>
+
+
+                <!-- SOCIAL MEDIA -->
+
+                <div class="socials footer-socials">
+
+                    <!-- Facebook -->
+
+                    <a
+                        href="https://www.facebook.com/Brndnrndr"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Facebook"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.4c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.7-4.6 4.7v2.5H6.6V13h3.1v9h3.8z"/>
+                        </svg>
+                    </a>
+
+
+                    <!-- Instagram -->
+
+                    <a
+                        href="https://www.instagram.com/modd.esigns/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Instagram"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2zm5.2-3.5a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"/>
+                        </svg>
+                    </a>
+
+
+                    <!-- LinkedIn -->
+
+                    <a
+                        href="https://www.linkedin.com/in/brandon-rendora-91628b212/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="LinkedIn"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4.7 3.5A2.2 2.2 0 1 1 4.7 8a2.2 2.2 0 0 1 0-4.5zM2.8 9.5h3.8V21H2.8V9.5zm6.1 0h3.6v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H8.9V9.5z"/>
+                        </svg>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

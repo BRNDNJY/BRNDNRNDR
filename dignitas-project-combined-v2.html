@@ -1,0 +1,1141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>The Dignitas Agency — Brandon Rendora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           PROJECT PAGE — THE DIGNITAS AGENCY
+        ========================================= */
+
+        .case-study {
+            background: var(--bg, #FAF7F2);
+        }
+
+        .case-hero {
+            padding: 120px 0 90px;
+        }
+
+        .case-number,
+        .section-label {
+            font: 700 12px "Manrope", sans-serif;
+            letter-spacing: .16em;
+            color: #818690;
+        }
+
+        .case-hero-grid {
+            display: grid;
+            grid-template-columns: 1.6fr .7fr;
+            gap: 100px;
+            margin-top: 60px;
+        }
+
+        .case-type {
+            font: 700 13px "Manrope";
+            letter-spacing: .12em;
+            color: var(--accent, #D15600);
+            margin-bottom: 24px;
+        }
+
+        .case-heading h1 {
+            font: 700 clamp(64px, 8vw, 138px) / .86 "Manrope";
+            letter-spacing: -.065em;
+            color: var(--ink, #11233D);
+            margin: 0;
+        }
+
+        .case-role {
+            font: 500 clamp(22px, 2vw, 32px) "Manrope";
+            color: var(--text, #3A414C);
+            margin-top: 36px;
+        }
+
+        .case-details {
+            align-self: end;
+        }
+
+        .case-detail {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 25px;
+            padding: 19px 0;
+            border-bottom: 1px solid var(--line, #D2CFC5);
+        }
+
+        .case-detail span,
+        .case-responsibilities > span {
+            font: 700 11px "Manrope";
+            letter-spacing: .13em;
+            color: #888d94;
+        }
+
+        .case-detail p {
+            margin: 0;
+            color: var(--ink, #11233D);
+            font-weight: 600;
+        }
+
+        .case-responsibilities {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 50px;
+            margin-top: 100px;
+            padding-top: 35px;
+            border-top: 1px solid var(--line, #D2CFC5);
+        }
+
+        .responsibility-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .responsibility-list p {
+            margin: 0;
+            padding: 10px 17px;
+            border: 1px solid var(--line, #D2CFC5);
+            border-radius: 999px;
+            color: var(--ink, #11233D);
+        }
+
+        .case-video-section {
+            padding: 80px 0 140px;
+        }
+
+        .case-video {
+            margin-top: 30px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--sand, #EBE8E1);
+            border: 1px solid var(--line, #D2CFC5);
+        }
+
+        .case-video video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .video-placeholder {
+            min-height: 520px;
+            display: grid;
+            place-items: center;
+            color: #7b8189;
+            font: 600 15px "Manrope";
+            letter-spacing: .08em;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .case-overview {
+            padding: 130px 0;
+        }
+
+        .case-overview-grid {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: clamp(70px, 10vw, 180px);
+        }
+
+        .case-overview h2 {
+            max-width: 850px;
+            font: 700 clamp(42px, 5vw, 82px) / 1 "Manrope";
+            letter-spacing: -.05em;
+            color: var(--ink, #11233D);
+            margin: 34px 0 0;
+        }
+
+        .case-description {
+            padding-top: 50px;
+        }
+
+        .case-description p {
+            font-size: 18px;
+            margin: 0 0 26px;
+        }
+
+        /* ARCHIVE STYLE GALLERY */
+
+        .archive-gallery-section {
+            padding: 130px 0 160px;
+            background: var(--bg, #FAF7F2);
+        }
+
+        .archive-gallery-head {
+            margin-bottom: 80px;
+        }
+
+        .archive-gallery-head h2 {
+            max-width: 900px;
+            margin: 24px 0 0;
+            font: 700 clamp(44px, 5vw, 82px) / 1 "Manrope";
+            letter-spacing: -.05em;
+            color: var(--ink, #11233D);
+        }
+
+        .archive-gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 24px;
+            row-gap: 90px;
+            align-items: start;
+        }
+
+        .archive-item {
+            display: block;
+            color: inherit;
+        }
+
+        .archive-media {
+            position: relative;
+            overflow: hidden;
+            background: var(--sand, #EBE8E1);
+            border: 1px solid var(--line, #D2CFC5);
+        }
+
+        .archive-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition:
+                transform .7s cubic-bezier(.22,.8,.22,1),
+                filter .5s ease;
+        }
+
+        .archive-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            padding: 35px;
+            text-align: center;
+            color: #858b94;
+            font: 700 12px "Manrope";
+            letter-spacing: .12em;
+        }
+
+        .archive-item:hover .archive-media img {
+            transform: scale(1.035);
+        }
+
+        .archive-item:hover .archive-meta {
+            color: var(--accent, #D15600);
+        }
+
+        .archive-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line, #D2CFC5);
+            font: 700 11px "Manrope";
+            letter-spacing: .12em;
+            color: #7d838c;
+            transition: color .3s ease;
+        }
+
+        .archive-large {
+            grid-column: 1 / span 7;
+        }
+
+        .archive-large .archive-media {
+            aspect-ratio: 16 / 10;
+        }
+
+        .archive-small {
+            grid-column: 9 / span 4;
+            margin-top: 130px;
+        }
+
+        .archive-small .archive-media {
+            aspect-ratio: 4 / 5;
+        }
+
+        .archive-tall {
+            grid-column: 2 / span 4;
+            margin-top: 40px;
+        }
+
+        .archive-tall .archive-media {
+            aspect-ratio: 3 / 4;
+        }
+
+        .archive-wide {
+            grid-column: 7 / span 6;
+            margin-top: 180px;
+        }
+
+        .archive-wide .archive-media {
+            aspect-ratio: 16 / 9;
+        }
+
+        .archive-medium {
+            grid-column: 3 / span 6;
+            margin-top: 80px;
+        }
+
+        .archive-medium .archive-media {
+            aspect-ratio: 4 / 3;
+        }
+
+        .device-showcase {
+            padding: 140px 0;
+        }
+
+        .device-heading h2 {
+            font: 700 clamp(44px, 5vw, 80px) / 1 "Manrope";
+            letter-spacing: -.05em;
+            color: var(--ink, #11233D);
+            margin: 25px 0 70px;
+        }
+
+        .device-grid {
+            display: grid;
+            grid-template-columns: 1.6fr .55fr;
+            gap: 70px;
+            align-items: end;
+        }
+
+        .device {
+            position: relative;
+        }
+
+        .device > span {
+            display: block;
+            font: 700 11px "Manrope";
+            letter-spacing: .15em;
+            color: #858b94;
+            margin-bottom: 15px;
+        }
+
+        .device-frame {
+            border: 1px solid var(--line, #D2CFC5);
+            background: var(--white, #FFFFFF);
+            overflow: hidden;
+        }
+
+        .device-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        .device-placeholder {
+            min-height: 420px;
+            display: grid;
+            place-items: center;
+            color: #858b94;
+            font: 700 12px "Manrope";
+            letter-spacing: .12em;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .mobile-view {
+            max-width: 360px;
+        }
+
+        .case-next {
+            padding: 120px 0;
+            border-top: 1px solid var(--line, #D2CFC5);
+        }
+
+        .case-next-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .case-next-logo {
+            width: min(280px, 30vw);
+        }
+
+        .case-next-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 30px;
+            padding: 23px 34px;
+            border: 1px solid var(--accent, #D15600);
+            border-radius: 999px;
+            color: var(--accent, #D15600);
+            font: 700 16px "Manrope";
+            transition: .3s ease;
+        }
+
+        .case-next-button:hover {
+            background: var(--accent, #D15600);
+            color: white;
+            transform: scale(1.035);
+        }
+
+        @media(max-width:1000px) {
+            .case-hero-grid,
+            .case-overview-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .case-responsibilities {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .archive-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 55px 22px;
+            }
+
+            .archive-large,
+            .archive-small,
+            .archive-tall,
+            .archive-wide,
+            .archive-medium {
+                grid-column: auto;
+                margin-top: 0;
+            }
+
+            .device-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-view {
+                max-width: 400px;
+            }
+        }
+
+        @media(max-width:680px) {
+            .case-hero {
+                padding-top: 70px;
+            }
+
+            .case-heading h1 {
+                font-size: 56px;
+            }
+
+            .case-detail {
+                grid-template-columns: 90px 1fr;
+            }
+
+            .archive-gallery {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .archive-large,
+            .archive-small,
+            .archive-tall,
+            .archive-wide,
+            .archive-medium {
+                grid-column: 1;
+                margin-top: 0;
+            }
+
+            .case-next-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .case-next-logo {
+                width: 210px;
+            }
+        }
+    
+        /* =========================================
+           DIGNITAS COMPILATION GRID
+           Projects only — no separate compilation header
+        ========================================= */
+
+        .dignitas-compilation-section {
+            padding: 130px 0 160px;
+            background: var(--bg, #FAF7F2);
+        }
+
+        .dg-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 26px 22px;
+            align-items: start;
+        }
+
+        .dg-grid .work {
+            margin: 0 0 48px;
+        }
+
+        .dg-grid .work:nth-child(6n+1) {
+            grid-column: span 7;
+        }
+
+        .dg-grid .work:nth-child(6n+2) {
+            grid-column: span 5;
+            margin-top: 110px;
+        }
+
+        .dg-grid .work:nth-child(6n+3) {
+            grid-column: 2 / span 4;
+        }
+
+        .dg-grid .work:nth-child(6n+4) {
+            grid-column: 7 / span 6;
+        }
+
+        .dg-grid .work:nth-child(6n+5) {
+            grid-column: span 5;
+        }
+
+        .dg-grid .work:nth-child(6n+6) {
+            grid-column: 6 / span 7;
+            margin-top: 90px;
+        }
+
+        .dg-grid .media {
+            background: var(--sand, #EBE8E1);
+            overflow: hidden;
+            border: 1px solid var(--line, #D2CFC5);
+        }
+
+        .dg-grid .media img,
+        .dg-grid .media video {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform .6s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .dg-grid .video .media {
+            background: #111;
+        }
+
+        .dg-grid .video video {
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .dg-grid .work:hover .media img,
+        .dg-grid .work:hover .media video {
+            transform: scale(1.015);
+        }
+
+        .dg-grid .caption {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border-top: 1px solid var(--line, #D2CFC5);
+            margin-top: 12px;
+            padding-top: 10px;
+            font: 700 10px "Manrope", sans-serif;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #5f646b;
+        }
+
+        @media(max-width:800px) {
+            .dg-grid {
+                display: block;
+            }
+
+            .dg-grid .work,
+            .dg-grid .work:nth-child(n) {
+                margin: 0 0 55px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================
+         HEADER
+    ========================================= -->
+
+    <header class="site-header">
+        <div class="container navbar">
+
+            <a class="logo-link" href="index.html">
+                <img class="brand-logo" src="LOGOBRNDN.png" alt="Brandon logo">
+            </a>
+
+            <nav class="navlinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a class="active" href="work.html">Work</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="socials">
+                <a href="https://www.facebook.com/Brndnrndr" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.4c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.7-4.6 4.7v2.5H6.6V13h3.1v9h3.8z"/>
+                    </svg>
+                </a>
+
+                <a href="https://www.instagram.com/modd.esigns/" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2zm5.2-3.5a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"/>
+                    </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/in/brandon-rendora-91628b212/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4.7 3.5A2.2 2.2 0 1 1 4.7 8a2.2 2.2 0 0 1 0-4.5zM2.8 9.5h3.8V21H2.8V9.5zm6.1 0h3.6v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H8.9V9.5z"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <main class="case-study">
+
+        <!-- ========================================
+             HERO
+        ========================================= -->
+
+        <section class="case-hero">
+
+            <div class="container">
+
+                <div class="case-number">
+                    01 / SELECTED WORK
+                </div>
+
+                <div class="case-hero-grid">
+
+                    <div class="case-heading">
+
+                        <p class="case-type">
+                            LEADERSHIP DEVELOPMENT
+                        </p>
+
+                        <h1>
+                            THE DIGNITAS<br>
+                            AGENCY
+                        </h1>
+
+                        <p class="case-role">
+                            Project Coordinator
+                        </p>
+
+                    </div>
+
+
+                    <div class="case-details">
+
+                        <div class="case-detail">
+                            <span>ROLE</span>
+                            <p>Project Coordinator</p>
+                        </div>
+
+                        <div class="case-detail">
+                            <span>FOCUS</span>
+                            <p>Development & Optimization</p>
+                        </div>
+
+                        <div class="case-detail">
+                            <span>LOCATION</span>
+                            <p>Boise, Idaho</p>
+                        </div>
+
+                        <div class="case-detail">
+                            <span>PERIOD</span>
+                            <p>2024</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="case-responsibilities">
+
+                    <span>RESPONSIBILITIES</span>
+
+                    <div class="responsibility-list">
+                        <p>Page Development</p>
+                        <p>Page Optimization</p>
+                        <p>Social Media Content</p>
+                        <p>PDF & One-Pager Design</p>
+                        <p>Program Language & Tone</p>
+                        <p>Program Coordination</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             VIDEO SHOWCASE
+        ========================================= -->
+
+        <section class="case-video-section">
+
+            <div class="container">
+
+                <div class="section-label">
+                    PROJECT WALKTHROUGH
+                </div>
+
+                <div class="case-video">
+
+
+                    <video
+                        src="WebsiteTDA.mp4"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                    ></video>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             PROJECT OVERVIEW
+        ========================================= -->
+
+        <section class="case-overview">
+
+            <div class="container case-overview-grid">
+
+                <div>
+
+                    <span class="section-label">
+                        ABOUT THE PROJECT
+                    </span>
+
+                    <h2>
+                        Supporting the digital systems behind a leadership development brand.
+                    </h2>
+
+                </div>
+
+
+                <div class="case-description">
+
+                    <p>
+                        The Dignitas Agency is a leadership development business based in Boise, Idaho.
+                    </p>
+
+                    <p>
+                        As Project Coordinator, I supported the development, organization, and optimization
+                        of digital pages, marketing content, and program materials.
+                    </p>
+
+                    <p>
+                        My responsibilities included developing and optimizing pages, creating social media
+                        posts and content, producing PDFs and one-page documents, helping shape the tone and
+                        language of programs, and coordinating with management on specific programs and
+                        marketing activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================================
+             COMPLETE DIGNITAS WORK COMPILATION
+             (Compilation header removed — projects only)
+        ========================================= -->
+
+        <section class="dignitas-compilation-section">
+
+            <div class="container">
+
+                <div class="archive-gallery-head">
+                    <span class="section-label">SELECTED WORK</span>
+
+                    <h2>
+                        Pages, content & campaign assets
+                    </h2>
+                </div>
+
+                <section class="dg-grid">
+
+                    <!-- ORIGINAL DIGNITAS GALLERY ITEMS RESTORED -->
+
+                    <div class="work video">
+                        <div class="media">
+                            <video src="FOI2.mp4" autoplay muted loop playsinline></video>
+                        </div>
+                        <div class="caption">
+                            <span>01</span>
+                            <span>WEBSITE DEVELOPMENT</span>
+                        </div>
+                    </div>
+
+                    <div class="work video">
+                        <div class="media">
+                            <video src="FW_10312025.mp4" autoplay muted loop playsinline></video>
+                        </div>
+                        <div class="caption">
+                            <span>02</span>
+                            <span>VIDEO CONTENT CREATION</span>
+                        </div>
+                    </div>
+
+                    <div class="work">
+                        <div class="media">
+                            <img src="FW_07212025.png" alt="Dignitas social media content">
+                        </div>
+                        <div class="caption">
+                            <span>03</span>
+                            <span>SOCIAL CONTENT</span>
+                        </div>
+                    </div>
+
+                    <div class="work">
+                        <div class="media">
+                            <img src="1.png" alt="Dignitas PDF design">
+                        </div>
+                        <div class="caption">
+                            <span>04</span>
+                            <span>PDF / ONE-PAGER</span>
+                        </div>
+                    </div>
+
+                    <div class="work">
+                        <div class="media">
+                            <img src="FW_08112025.png" alt="Dignitas campaign work">
+                        </div>
+                        <div class="caption">
+                            <span>05</span>
+                            <span>CAMPAIGN SUPPORT</span>
+                        </div>
+                    </div>
+
+                    <div class="work">
+                        <div class="media">
+                            <img src="Content Calendar Dignitas.png" alt="Dignitas content design">
+                        </div>
+                        <div class="caption">
+                            <span>06</span>
+                            <span>CONTENT SYSTEM</span>
+                        </div>
+                    </div>
+
+<figure class="work"><div class="media"><img src="assets/STACYANGELA.png" alt="Podcast creative"></div><figcaption class="caption"><span>01 / Brand Content</span><span>Creative Direction</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/blog.png" alt="Dignitas blog creative"></div><figcaption class="caption"><span>02 / Social</span><span>Blog Campaign</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/leadership.png" alt="Leadership campaign creative"></div><figcaption class="caption"><span>03 / Campaign</span><span>Leadership Content</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/from-within-info.png" alt="From Within information session creative"></div><figcaption class="caption"><span>04 / From Within</span><span>Info Session</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/from-within-charleston.png" alt="From Within Charleston retreat creative"></div><figcaption class="caption"><span>05 / From Within</span><span>Retreat Campaign</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/from-within-return.png" alt="From Within campaign creative"></div><figcaption class="caption"><span>06 / From Within</span><span>Campaign System</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/from-within-restoration.png" alt="From Within restoration creative"></div><figcaption class="caption"><span>07 / From Within</span><span>Program Content</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/from-within-book.png" alt="From Within booking creative"></div><figcaption class="caption"><span>08 / From Within</span><span>Conversion Creative</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/email-flowchart.png" alt="Email automation flowchart"></div><figcaption class="caption"><span>09 / Automation</span><span>Email Flowchart</span></figcaption></figure>
+<figure class="work"><div class="media"><img src="assets/charleston-map.png" alt="Charleston retreat map"></div><figcaption class="caption"><span>10 / Program Material</span><span>Charleston Map</span></figcaption></figure>
+<figure class="work video"><div class="media"><video src="assets/mosaic.mp4" muted autoplay loop playsinline  preload="metadata"></video></div><figcaption class="caption"><span>15 / Motion</span><span>Brand Intro</span></figcaption></figure>
+<figure class="work video"><div class="media"><video src="assets/VIDEO POST.mp4" muted autoplay loop playsinline preload="metadata"></video></div><figcaption class="caption"><span>16 / Motion</span><span>Visual Storytelling</span></figcaption></figure>
+<figure class="work video"><div class="media"><video src="assets/LOGOREVEAL.mp4" muted autoplay loop playsinline preload="metadata"></video></div><figcaption class="caption"><span>17 / Motion</span><span>Logo Reveal</span></figcaption></figure>
+<figure class="work video"><div class="media"><video src="assets/BRANDCONTENT.mp4" muted autoplay loop playsinline  preload="metadata"></video></div><figcaption class="caption"><span>18 / Motion</span><span>Brand Content</span></figcaption></figure>
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             RESPONSIVE EXPERIENCE
+        ========================================= -->
+
+        <section class="device-showcase">
+
+            <div class="container">
+
+                <div class="device-heading">
+
+                    <span class="section-label">
+                        RESPONSIVE EXPERIENCE
+                    </span>
+
+                    <h2>
+                        Designed across screens.
+                    </h2>
+
+                </div>
+
+
+                <div class="device-grid">
+
+                    <div class="device desktop-view">
+
+                        <span>DESKTOP</span>
+
+                        <div class="device-frame">
+                            
+                            <img src="Desktop.png" alt="Dignitas desktop website">
+                          
+                            
+                        </div>
+
+                    </div>
+
+
+                    <div class="device mobile-view">
+
+                        <span>MOBILE</span>
+
+                        <div class="device-frame">
+                            
+                            <img src="download.jpg" alt="Dignitas mobile website">
+                           
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             MORE WORK CTA
+        ========================================= -->
+
+        <section class="case-next">
+
+            <div class="container case-next-inner">
+
+                <img
+                    class="case-next-logo"
+                    src="LOGOBRNDN.png"
+                    alt="Brandon Rendora"
+                >
+
+                <a
+                    class="case-next-button"
+                    href="work.html"
+                >
+                    SEE MORE OF MY WORK
+                    <span>↗</span>
+                </a>
+
+    </div>
+
+</section>
+<!-- ========================================
+     LEADERSHIP PLAYBOOK
+========================================= -->
+
+<section class="tda-playbook-section">
+
+    <div class="container tda-playbook-grid">
+
+        <div class="tda-playbook-copy">
+
+            <span class="section-label">
+                INTERACTIVE LEADERSHIP RESOURCE
+            </span>
+
+            <h2>
+                From Overwhelm to Influence™
+                Leadership Playbook
+            </h2>
+
+            <p>
+                An interactive leadership playbook created for The Dignitas Agency,
+                designed as a self-guided companion for clarity, discernment,
+                decision-making, and leadership presence.
+            </p>
+
+            <p>
+                The resource includes guided leadership frameworks, reflection
+                prompts, interactive exercises, decision tools, and structured
+                leadership moves that users can navigate directly inside the
+                digital playbook.
+            </p>
+
+            <a
+                class="tda-playbook-button"
+                href="TDA_Playbook.html"
+                target="_blank"
+                rel="noopener"
+            >
+                VIEW INTERACTIVE PLAYBOOK
+                <span>↗</span>
+            </a>
+
+        </div>
+
+
+        <div class="tda-playbook-preview">
+
+            <iframe
+                src="TDA_Playbook.html"
+                title="From Overwhelm to Influence Leadership Playbook"
+                loading="lazy"
+            ></iframe>
+
+        </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-head">
+
+                <img
+                    class="footer-brand"
+                    src="LOGOBRNDN.png"
+                    alt="Brandon logo"
+                >
+
+                <img
+                    class="footer-avatar"
+                    src="Profile-Brandon.png"
+                    alt="Brandon portrait"
+                >
+
+                <h2 class="footer-title">
+                    LET’S BE A PARTNER
+                </h2>
+
+            </div>
+
+
+            <div class="footer-rule"></div>
+
+
+            <div class="footer-pills">
+
+                <a
+                    class="pill"
+                    href="mailto:brndnjyrendora@gmail.com"
+                >
+                    brndnjyrendora@gmail.com
+                </a>
+
+                <a
+                    class="pill"
+                    href="tel:+639702842183"
+                >
+                    +63 9702842183
+                </a>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+
+                <!-- VERSION -->
+
+                <div>
+
+                    <div class="meta-label">
+                        Version
+                    </div>
+
+                    <div class="meta-value">
+                        Brandon Rendora @ 2026
+                    </div>
+
+                </div>
+
+
+                <!-- LOCAL TIME -->
+
+                <div>
+
+                    <div class="meta-label">
+                        Local Time
+                    </div>
+
+                    <div class="meta-value local-time"></div>
+
+                </div>
+
+
+                <!-- SOCIAL MEDIA -->
+
+                <div class="socials footer-socials">
+
+                    <!-- Facebook -->
+
+                    <a
+                        href="https://www.facebook.com/Brndnrndr"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Facebook"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M13.5 22v-9h3l.5-3.5h-3.5V7.2c0-1 .3-1.7 1.8-1.7H17V2.4c-.3 0-1.4-.1-2.7-.1-2.7 0-4.6 1.7-4.6 4.7v2.5H6.6V13h3.1v9h3.8z"/>
+                        </svg>
+                    </a>
+
+
+                    <!-- Instagram -->
+
+                    <a
+                        href="https://www.instagram.com/modd.esigns/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Instagram"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.2A4.8 4.8 0 1 1 12 16.8 4.8 4.8 0 0 1 12 7.2zm0 2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2zm5.2-3.5a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"/>
+                        </svg>
+                    </a>
+
+
+                    <!-- LinkedIn -->
+
+                    <a
+                        href="https://www.linkedin.com/in/brandon-rendora-91628b212/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="LinkedIn"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4.7 3.5A2.2 2.2 0 1 1 4.7 8a2.2 2.2 0 0 1 0-4.5zM2.8 9.5h3.8V21H2.8V9.5zm6.1 0h3.6v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H8.9V9.5z"/>
+                        </svg>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
